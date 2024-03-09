@@ -27,12 +27,12 @@ const NavBarItem: React.FC<NavBarItemProps> = ({ navLinkName, dropDownLinks, nav
     >
       <NavLink
         href={navPath}
-        activeLinkColor='#4eb334'
         sx={{
           fontSize: '15px',
           padding: '6px 16px',
           textDecoration: 'none',
         }}
+        color='inherit'
       >
         {navLinkName}
       </NavLink>
