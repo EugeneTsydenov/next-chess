@@ -1,10 +1,7 @@
 import { Providers } from '@/app/_providers';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import './_styles/globals.css';
 import * as React from 'react';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'ChessHub',
@@ -18,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body>
         <Providers>{children}</Providers>
       </body>
     </html>

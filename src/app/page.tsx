@@ -1,11 +1,10 @@
 import { NavLink } from '@/shared/ui';
+import { Box } from '@mui/material';
 
 export default function Home() {
   return (
-    <main>
-      <NavLink href='/' color='#4eb334'>
-        Link
-      </NavLink>
-    </main>
+    <Box>
+      <NavLink href='/'>Link</NavLink>
+    </Box>
   );
 }
