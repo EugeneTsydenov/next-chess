@@ -1,3 +1,4 @@
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import * as React from 'react';
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AppRouterCacheProvider options={{ key: 'mui' }}>{children}</AppRouterCacheProvider>
+      </body>
     </html>
   );
 }

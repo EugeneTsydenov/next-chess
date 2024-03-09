@@ -1,6 +1,12 @@
 import styles from './page.module.css';
-import Image from 'next/image';
+import { NavLink } from '@/shared/ui';
 
 export default function Home() {
-  return <main className={styles.main}>Home</main>;
+  return (
+    <main className={styles.main}>
+      <NavLink href='/' color='#4eb334'>
+        Link
+      </NavLink>
+    </main>
+  );
 }
