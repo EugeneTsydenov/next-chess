@@ -1,8 +1,8 @@
-import { Layout } from '@/widgets/layout';
+import { PlayPage } from '@/views/play';
 import * as React from 'react';
 
-const Page: React.FC = () => {
-  return <Layout>Play</Layout>;
+const Play: React.FC = () => {
+  return <PlayPage />;
 };
 
-export default Page;
+export default Play;

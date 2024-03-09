@@ -1,10 +1,5 @@
-import { Layout } from '@/widgets/layout';
-import { NavLink } from '@/shared/ui';
+import { HomePage } from '@/views/home';
 
 export default function Home() {
-  return (
-    <Layout>
-      <NavLink href='/'>Link</NavLink>
-    </Layout>
-  );
+  return <HomePage />;
 }
