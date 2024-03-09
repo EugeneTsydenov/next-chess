@@ -1,8 +1,8 @@
 import { Providers } from '@/app/_providers';
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
+import './_styles/globals.css';
 import * as React from 'react';
-import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
