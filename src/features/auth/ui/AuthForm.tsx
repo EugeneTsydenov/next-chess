@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import * as React from 'react';
 
-type FormAction = string | ((formData: FormData) => void) | undefined;
+type FormAction = ((formData: FormData) => void) | undefined;
 
 interface AuthFormProps {
   children: React.ReactNode;
