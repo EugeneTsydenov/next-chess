@@ -1,27 +1,17 @@
+'use client';
+
+import { registrationAction } from '@/widgets/registration/lib/actions/registrationAction';
 import { AuthForm, PasswordVisibility } from '@/features/auth';
-import Typography from '@mui/material/Typography';
-import { Button, TextField } from '@mui/material';
-import { AuthTitle, Link } from '@/shared/ui';
-import Box from '@mui/material/Box';
+import { Alert, Button, TextField } from '@mui/material';
+import { useFormState } from 'react-dom';
 import * as React from 'react';
 
 const RegistrationFrom: React.FC = () => {
+  const [state, formAction] = useFormState(registrationAction, undefined);
+
   return (
-    <AuthForm>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '65%',
-          alignItems: 'center',
-          height: '100%',
-          gap: 2,
-        }}
-      >
-        <AuthTitle />
-        <Typography variant='h3' component='h2' fontWeight={600} mb={4}>
-          Register to open new opportunities
-        </Typography>
+    <>
+      <AuthForm action={formAction}>
         <TextField
           id='outlined-basic'
           label='Email'
@@ -43,16 +33,9 @@ const RegistrationFrom: React.FC = () => {
         <Button type='submit' variant='contained' fullWidth>
           Register
         </Button>
-        <Box
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-          width='100%'
-        >
-          <Link href='#'>
-            <Typography>Already have an account? Sign In</Typography>
-          </Link>
-        </Box>
-      </Box>
-    </AuthForm>
+      </AuthForm>
+      {state && !state.isAuth ? <Alert severity='error'>{state.message}</Alert> : ''}
+    </>
   );
 };
 

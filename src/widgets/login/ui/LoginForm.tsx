@@ -1,27 +1,20 @@
+'use client';
+
+import { loginAction } from '@/widgets/login/lib/actions/loginAction';
 import { AuthForm, PasswordVisibility } from '@/features/auth';
+import { Alert, Button, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { Button, TextField } from '@mui/material';
 import { AuthTitle, Link } from '@/shared/ui';
+import { useFormState } from 'react-dom';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 
 const LoginForm: React.FC = () => {
+  const [state, formAction] = useFormState(loginAction, undefined);
+
   return (
-    <AuthForm>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '65%',
-          alignItems: 'center',
-          height: '100%',
-          gap: 2,
-        }}
-      >
-        <AuthTitle />
-        <Typography variant='h3' component='h2' fontWeight={600} mb={4}>
-          Login to open new opportunities
-        </Typography>
+    <>
+      <AuthForm action={formAction}>
         <TextField
           id='outlined-basic'
           label='Email'
@@ -34,19 +27,9 @@ const LoginForm: React.FC = () => {
         <Button type='submit' variant='contained' fullWidth>
           Login
         </Button>
-        <Box
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-          width='100%'
-        >
-          <Link href='#'>
-            <Typography>Forgot password?</Typography>
-          </Link>
-          <Link href='#'>
-            <Typography>Dont have an account? Sign Up</Typography>
-          </Link>
-        </Box>
-      </Box>
-    </AuthForm>
+      </AuthForm>
+      {state && !state.isAuth ? <Alert severity='error'>{state.message}</Alert> : ''}
+    </>
   );
 };
 
