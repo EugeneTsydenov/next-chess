@@ -1,7 +1,14 @@
 import { Box } from '@mui/material';
 import * as React from 'react';
 
-const AuthForm: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+type FormAction = string | ((formData: FormData) => void) | undefined;
+
+interface AuthFormProps {
+  children: React.ReactNode;
+  action: FormAction;
+}
+
+const AuthForm: React.FC<AuthFormProps> = ({ children, action }) => {
   return (
     <Box
       component='form'
@@ -10,8 +17,9 @@ const AuthForm: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         flexDirection: 'column',
         width: '100%',
         alignItems: 'center',
-        height: '100%',
+        gap: 2,
       }}
+      action={action}
     >
       {children}
     </Box>

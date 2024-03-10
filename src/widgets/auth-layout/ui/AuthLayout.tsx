@@ -1,4 +1,5 @@
-import { Chessboard } from '@/shared/ui';
+import { AuthTitle, Chessboard, Link } from '@/shared/ui';
+import Typography from '@mui/material/Typography';
 import { Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import * as React from 'react';
@@ -21,7 +22,33 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
             height: '100%',
           }}
         >
-          {children}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '65%',
+              alignItems: 'center',
+              height: '100%',
+              gap: 2,
+            }}
+          >
+            <AuthTitle />
+            <Typography variant='h3' component='h2' fontWeight={600} mb={4}>
+              Login to open new opportunities
+            </Typography>
+            {children}
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+              width='100%'
+            >
+              <Link href='#'>
+                <Typography>Forgot password?</Typography>
+              </Link>
+              <Link href='#'>
+                <Typography>Dont have an account? Sign Up</Typography>
+              </Link>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
