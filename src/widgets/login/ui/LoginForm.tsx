@@ -1,20 +1,13 @@
 'use client';
 
-import { loginAction } from '@/widgets/login/lib/actions/loginAction';
 import { AuthForm, PasswordVisibility } from '@/features/auth';
-import { Alert, Button, TextField } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import { AuthTitle, Link } from '@/shared/ui';
-import { useFormState } from 'react-dom';
-import Box from '@mui/material/Box';
+import { Button, TextField } from '@mui/material';
 import * as React from 'react';
 
 const LoginForm: React.FC = () => {
-  const [state, formAction] = useFormState(loginAction, undefined);
-
   return (
     <>
-      <AuthForm action={formAction}>
+      <AuthForm>
         <TextField
           id='outlined-basic'
           label='Email'

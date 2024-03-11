@@ -5,10 +5,9 @@ type FormAction = ((formData: FormData) => void) | undefined;
 
 interface AuthFormProps {
   children: React.ReactNode;
-  action: FormAction;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ children, action }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ children }) => {
   return (
     <Box
       component='form'
@@ -19,7 +18,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ children, action }) => {
         alignItems: 'center',
         gap: 2,
       }}
-      action={action}
     >
       {children}
     </Box>

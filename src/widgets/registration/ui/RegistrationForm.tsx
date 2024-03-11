@@ -1,17 +1,13 @@
 'use client';
 
-import { registrationAction } from '@/widgets/registration/lib/actions/registrationAction';
 import { AuthForm, PasswordVisibility } from '@/features/auth';
-import { Alert, Button, TextField } from '@mui/material';
-import { useFormState } from 'react-dom';
+import { Button, TextField } from '@mui/material';
 import * as React from 'react';
 
 const RegistrationFrom: React.FC = () => {
-  const [state, formAction] = useFormState(registrationAction, undefined);
-
   return (
     <>
-      <AuthForm action={formAction}>
+      <AuthForm>
         <TextField
           id='outlined-basic'
           label='Email'
