@@ -1,4 +1,5 @@
 import { AppBar, Box, Container, Paper, Toolbar } from '@mui/material';
+import { ThemeModeSwitcher } from '@/features/theme';
 import NavBar from '@/widgets/layout/ui/NavBar';
 import { Link, Logo } from '@/shared/ui';
 import * as React from 'react';
@@ -44,6 +45,9 @@ const Header: React.FC = () => {
                 />
               </Link>
               <NavBar />
+            </Box>
+            <Box>
+              <ThemeModeSwitcher />
             </Box>
           </Toolbar>
         </Container>

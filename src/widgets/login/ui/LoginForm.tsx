@@ -28,7 +28,6 @@ const LoginForm: React.FC = () => {
           Login
         </Button>
       </AuthForm>
-      {state && !state.isAuth ? <Alert severity='error'>{state.message}</Alert> : ''}
     </>
   );
 };

@@ -1,0 +1,1 @@
+export let theme = 'light';

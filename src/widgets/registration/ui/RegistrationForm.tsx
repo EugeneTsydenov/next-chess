@@ -34,7 +34,6 @@ const RegistrationFrom: React.FC = () => {
           Register
         </Button>
       </AuthForm>
-      {state && !state.isAuth ? <Alert severity='error'>{state.message}</Alert> : ''}
     </>
   );
 };
