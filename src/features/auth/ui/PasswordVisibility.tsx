@@ -1,17 +1,32 @@
 'use client';
 
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import {
+  FormControl,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { DeepRequired, FieldErrorsImpl } from 'react-hook-form';
+import { RegistrationInputType } from '@/features/auth';
 import * as React from 'react';
 
 interface PasswordVisibilityProps {
   label: string;
-  name: string;
+  name: 'username' | 'email' | 'password' | 'confirmedPassword';
+  register: any;
+  errors: Partial<FieldErrorsImpl<DeepRequired<RegistrationInputType>>>;
 }
 
-const PasswordVisibility: React.FC<PasswordVisibilityProps> = ({ label, name }) => {
+const PasswordVisibility: React.FC<PasswordVisibilityProps> = ({
+  label,
+  name,
+  register,
+  errors,
+}) => {
   const [showPassword, setShowPassword] = React.useState(false);
-
   function handleClickShowPassword() {
     setShowPassword(prev => !prev);
   }
@@ -26,13 +41,12 @@ const PasswordVisibility: React.FC<PasswordVisibilityProps> = ({ label, name }) 
         width: '100%',
       }}
       variant='outlined'
-      required
+      error={!!errors[name]}
     >
       <InputLabel htmlFor='outlined-adornment-password'>{label}</InputLabel>
       <OutlinedInput
         id='outlined-adornment-password'
         type={showPassword ? 'text' : 'password'}
-        required
         endAdornment={
           <InputAdornment position='end'>
             <IconButton
@@ -46,8 +60,13 @@ const PasswordVisibility: React.FC<PasswordVisibilityProps> = ({ label, name }) 
           </InputAdornment>
         }
         label={label}
-        name={name}
+        {...register(name)}
       />
+      {errors[name] ? (
+        <FormHelperText id='outlined-adornment-password'>{errors[name]?.message}</FormHelperText>
+      ) : (
+        ''
+      )}
     </FormControl>
   );
 };

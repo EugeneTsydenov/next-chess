@@ -1,15 +1,16 @@
+import { FormEventHandler } from 'react';
 import { Box } from '@mui/material';
 import * as React from 'react';
 
-type FormAction = ((formData: FormData) => void) | undefined;
-
 interface AuthFormProps {
   children: React.ReactNode;
+  onSubmit: FormEventHandler<HTMLFormElement>;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ children }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ children, onSubmit }) => {
   return (
     <Box
+      onSubmit={onSubmit}
       component='form'
       sx={{
         display: 'flex',
