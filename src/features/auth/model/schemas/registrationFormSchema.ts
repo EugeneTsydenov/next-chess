@@ -18,14 +18,7 @@ export const RegistrationFormSchema = z
         new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/),
         'Please, Enter a valid password!',
       ),
-    confirmedPassword: z
-      .string()
-      .min(8, 'Password must be at least 8 characters!')
-      .max(20, 'Password must be less then 13 characters!')
-      .regex(
-        new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/),
-        'Please, Enter a valid password!',
-      ),
+    confirmedPassword: z.string({ required_error: 'Please, confirm password!' }),
   })
   .refine(data => data.password === data.confirmedPassword, {
     message: "Password and confirm password doesn't match!",
