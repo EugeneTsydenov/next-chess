@@ -4,6 +4,7 @@ import {
   RegistrationFormSchema,
   RegistrationInputType,
 } from '@/features/auth/model/schemas/registrationFormSchema';
+import { registrationAction } from '@/features/auth/lib/actions/registrationAction';
 import PasswordVisibility from '@/features/auth/ui/PasswordVisibility';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, TextField } from '@mui/material';
@@ -14,13 +15,13 @@ const RegistrationFrom: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegistrationInputType>({
     resolver: zodResolver(RegistrationFormSchema),
   });
 
-  const onSubmit: SubmitHandler<RegistrationInputType> = data => {
-    console.log(data);
+  const onSubmit: SubmitHandler<RegistrationInputType> = async data => {
+    await registrationAction(data);
   };
 
   return (
@@ -60,8 +61,8 @@ const RegistrationFrom: React.FC = () => {
         register={register}
         errors={errors}
       />
-      <Button type='submit' variant='contained' fullWidth>
-        Register
+      <Button type='submit' variant='contained' fullWidth disabled={isSubmitting}>
+        {isSubmitting ? 'Register...' : 'Register'}
       </Button>
     </Box>
   );

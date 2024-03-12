@@ -2,6 +2,7 @@
 
 import { LoginFormSchema, LoginInputType } from '@/features/auth/model/schemas/loginFormSchema';
 import PasswordVisibility from '@/features/auth/ui/PasswordVisibility';
+import { loginAction } from '@/features/auth/lib/actions/loginAction';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, TextField } from '@mui/material';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,8 +17,8 @@ const LoginForm: React.FC = () => {
     resolver: zodResolver(LoginFormSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginInputType> = data => {
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginInputType> = async data => {
+    await loginAction(data);
   };
 
   return (
