@@ -1,5 +1,5 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import NextAuth from 'next-auth';
+import NextAuth, { User } from 'next-auth';
 
 const authOptions = {
   pages: {
@@ -21,7 +21,7 @@ const authOptions = {
         },
       },
       async authorize(credentials) {
-        return null;
+        return { email: 'sdsads' } as User;
       },
     }),
   ],
