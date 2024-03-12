@@ -6,10 +6,10 @@ interface LoginPageParams {
   callbackUrl?: string;
 }
 
-const LoginPage: React.FC<LoginPageParams> = props => {
+const LoginPage: React.FC<LoginPageParams> = ({ callbackUrl }) => {
   return (
     <AuthLayout>
-      <LoginForm callbackUrl={props.callbackUrl} />
+      <LoginForm callbackUrl={callbackUrl} />
     </AuthLayout>
   );
 };

@@ -1,13 +1,13 @@
 import { LoginPage } from '@/views/login';
 import * as React from 'react';
-
 interface LoginProps {
-  callbackUrl?: string;
-  searchParams: object;
+  searchParams: {
+    callbackUrl?: string;
+  };
 }
 
-const Login: React.FC<LoginProps> = props => {
-  return <LoginPage callbackUrl={props.callbackUrl} />;
+const Login: React.FC<LoginProps> = ({ searchParams }) => {
+  return <LoginPage callbackUrl={searchParams.callbackUrl} />;
 };
 
 export default Login;

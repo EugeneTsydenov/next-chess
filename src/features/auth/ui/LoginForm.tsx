@@ -14,7 +14,7 @@ interface LoginFormProps {
   callbackUrl?: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = props => {
+const LoginForm: React.FC<LoginFormProps> = ({ callbackUrl }) => {
   const {
     register,
     handleSubmit,
@@ -34,7 +34,7 @@ const LoginForm: React.FC<LoginFormProps> = props => {
         myToast(res.error, { type: 'error' });
       } else {
         myToast('You have successfully logged in!');
-        router.push(props.callbackUrl ? props.callbackUrl : '/');
+        router.push(callbackUrl ? callbackUrl : '/');
       }
     }
   };
