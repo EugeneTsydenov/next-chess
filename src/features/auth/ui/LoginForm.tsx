@@ -6,9 +6,17 @@ import { loginAction } from '@/features/auth/lib/actions/loginAction';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, TextField } from '@mui/material';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { myToast } from '@/shared/lib';
 import * as React from 'react';
 
-const LoginForm: React.FC = () => {
+interface LoginFormProps {
+  searchProps?: {
+    callbackUrl?: string;
+  };
+}
+
+const LoginForm: React.FC<LoginFormProps> = props => {
   const {
     register,
     handleSubmit,
@@ -16,9 +24,21 @@ const LoginForm: React.FC = () => {
   } = useForm<LoginInputType>({
     resolver: zodResolver(LoginFormSchema),
   });
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<LoginInputType> = async data => {
-    await loginAction(data);
+    const res = await loginAction(data);
+
+    if (!res) {
+      myToast('Something Went Wrong!', { type: 'error' });
+    } else {
+      if (res.error) {
+        myToast(res.error, { type: 'error' });
+      } else {
+        myToast('You have successfully logged in!');
+        router.push(props.searchProps?.callbackUrl ? props.searchProps.callbackUrl : '/');
+      }
+    }
   };
 
   return (

@@ -2,10 +2,16 @@ import { AuthLayout } from '@/widgets/auth-layout';
 import { LoginForm } from '@/features/auth';
 import * as React from 'react';
 
-const LoginPage: React.FC = () => {
+interface LoginPageParams {
+  searchParams: {
+    callbackUrl?: string;
+  };
+}
+
+const LoginPage: React.FC<LoginPageParams> = props => {
   return (
     <AuthLayout>
-      <LoginForm />
+      <LoginForm searchProps={props.searchParams} />
     </AuthLayout>
   );
 };
