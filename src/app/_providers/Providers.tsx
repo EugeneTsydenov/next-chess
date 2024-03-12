@@ -1,5 +1,5 @@
+import SessionProvider from '@/app/_providers/SessionProvider';
 import ThemeProvider from '@/app/_providers/ThemeProvider';
-import { SessionProvider } from 'next-auth/react';
 import * as React from 'react';
 
 const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
