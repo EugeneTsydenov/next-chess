@@ -9,6 +9,8 @@ import PasswordVisibility from '@/features/auth/ui/PasswordVisibility';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, TextField } from '@mui/material';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { myToast } from '@/shared/lib';
 import * as React from 'react';
 
 const RegistrationFrom: React.FC = () => {
@@ -19,9 +21,18 @@ const RegistrationFrom: React.FC = () => {
   } = useForm<RegistrationInputType>({
     resolver: zodResolver(RegistrationFormSchema),
   });
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<RegistrationInputType> = async data => {
-    await registrationAction(data);
+    const { email, username, password } = data;
+    const res = await registrationAction({ email, username, password });
+    if (res.status === 200) {
+      myToast(res.message);
+      router.push('/login');
+    }
+    if (res.status === 400 || res.status === 401 || res.status === 500) {
+      myToast(res.message, { type: 'error' });
+    }
   };
 
   return (

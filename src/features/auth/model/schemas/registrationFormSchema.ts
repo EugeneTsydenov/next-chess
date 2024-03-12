@@ -16,7 +16,7 @@ export const RegistrationFormSchema = z
       .max(20, 'Password must be less then 20 characters!')
       .regex(
         new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/),
-        'Please, Enter a valid password!',
+        'The password must consist of at least one lowercase and uppercase letter, one number and one symbol',
       ),
     confirmedPassword: z.string({ required_error: 'Please, confirm password!' }),
   })
