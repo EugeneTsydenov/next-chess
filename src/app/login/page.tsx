@@ -3,7 +3,7 @@ import * as React from 'react';
 
 interface LoginProps {
   callbackUrl?: string;
-  searchParams: Record<string, string> | {};
+  searchParams: object;
 }
 
 const Login: React.FC<LoginProps> = props => {
