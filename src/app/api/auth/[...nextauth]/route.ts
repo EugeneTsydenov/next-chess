@@ -21,7 +21,6 @@ const authOptions = {
         },
       },
       async authorize(credentials) {
-        console.log(credentials);
         return null;
       },
     }),
