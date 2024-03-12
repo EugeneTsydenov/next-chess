@@ -3,15 +3,13 @@ import { LoginForm } from '@/features/auth';
 import * as React from 'react';
 
 interface LoginPageParams {
-  searchParams: {
-    callbackUrl?: string;
-  };
+  callbackUrl?: string;
 }
 
 const LoginPage: React.FC<LoginPageParams> = props => {
   return (
     <AuthLayout>
-      <LoginForm searchProps={props.searchParams} />
+      <LoginForm callbackUrl={props.callbackUrl} />
     </AuthLayout>
   );
 };

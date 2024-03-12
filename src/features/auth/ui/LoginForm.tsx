@@ -11,9 +11,7 @@ import { myToast } from '@/shared/lib';
 import * as React from 'react';
 
 interface LoginFormProps {
-  searchProps?: {
-    callbackUrl?: string;
-  };
+  callbackUrl?: string;
 }
 
 const LoginForm: React.FC<LoginFormProps> = props => {
@@ -36,7 +34,7 @@ const LoginForm: React.FC<LoginFormProps> = props => {
         myToast(res.error, { type: 'error' });
       } else {
         myToast('You have successfully logged in!');
-        router.push(props.searchProps?.callbackUrl ? props.searchProps.callbackUrl : '/');
+        router.push(props.callbackUrl ? props.callbackUrl : '/');
       }
     }
   };
