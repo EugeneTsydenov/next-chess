@@ -1,5 +1,5 @@
 import { AuthLayout } from '@/widgets/auth-layout';
-import { LoginForm } from '@/widgets/login';
+import { LoginForm } from '@/features/auth';
 import * as React from 'react';
 
 const LoginPage: React.FC = () => {

@@ -8,9 +8,9 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@mui/material';
+import { RegistrationInputType } from '@/features/auth/model/schemas/registrationFormSchema';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { DeepRequired, FieldErrorsImpl } from 'react-hook-form';
-import { RegistrationInputType } from '@/features/auth';
 import * as React from 'react';
 
 interface PasswordVisibilityProps {
