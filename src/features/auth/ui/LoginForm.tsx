@@ -26,16 +26,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ callbackUrl }) => {
 
   const onSubmit: SubmitHandler<LoginInputType> = async data => {
     const res = await loginAction(data);
-
-    if (!res) {
-      myToast('Something Went Wrong!', { type: 'error' });
-    } else {
-      if (res.error) {
-        myToast(res.error, { type: 'error' });
-      } else {
-        myToast('You have successfully logged in!');
-        router.push(callbackUrl ? callbackUrl : '/');
-      }
+    if (res.status === 200) {
+      myToast(res.message);
+      router.push(callbackUrl ? callbackUrl : '/');
+    }
+    if (res.status === 400 || res.status === 401 || res.status === 500) {
+      myToast(res.message, { type: 'error' });
     }
   };
 

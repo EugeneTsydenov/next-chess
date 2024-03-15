@@ -1,3 +1,5 @@
+'use client';
+
 import SessionProvider from '@/app/_providers/SessionProvider';
 import ThemeProvider from '@/app/_providers/ThemeProvider';
 import * as React from 'react';

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'The Best web site for chess online',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

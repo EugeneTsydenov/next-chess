@@ -1,10 +1,17 @@
+'use server';
+
 import { LoginInputType } from '@/features/auth/model/schemas/loginFormSchema';
-import { signIn } from 'next-auth/react';
+import { $authAxios } from '@/entities/auth';
 
 export async function loginAction(data: LoginInputType) {
-  return await signIn('credentials', {
-    redirect: false,
-    email: data.email,
-    password: data.password,
-  });
+  try {
+    const response = await $authAxios.post('/login', data);
+    return { status: response.status, message: response.data.message };
+  } catch (e: any) {
+    if (e.response) {
+      return { status: e.response.status, message: e.response.data.message };
+    } else {
+      return { status: 500, message: 'An error occurred while executing the request' };
+    }
+  }
 }

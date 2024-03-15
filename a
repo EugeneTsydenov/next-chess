@@ -1,0 +1,262 @@
+[33mcommit aee1c47c5f01f21c4a16db0cdddabbf0c325b2ec[m[33m ([m[1;36mHEAD -> [m[1;32mauthentication[m[33m, [m[1;31morigin/authentication[m[33m)[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 21:38:16 2024 +0800
+
+    implemet: registration
+
+[33mcommit 9496c38dfd5ac09b2b35fac75d509d71358a44d6[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 17:10:16 2024 +0800
+
+    fix: types props login
+
+[33mcommit 0ba02a83760134c675d2b1a860053da617872d94[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 17:02:38 2024 +0800
+
+    fix: types login page
+
+[33mcommit 4e0b301b0c5b14374d1685df8139633d2b8fee87[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 17:01:16 2024 +0800
+
+    fix: types login page
+
+[33mcommit d7b9c375028b442ee7cefc75ecafd493cf2ad1f9[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 17:00:01 2024 +0800
+
+    fix: params types in login page
+
+[33mcommit a3ede3f91909f93e873166dfe812c5c2f9f29106[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 16:57:35 2024 +0800
+
+    fix: props callback url and types
+
+[33mcommit 6279df11a004f9752c51297a7256026e96bf1479[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 16:51:51 2024 +0800
+
+    fix: params types in login page
+
+[33mcommit e59c1749e18aef0a9833a556c65d2a4a2fe24bbc[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 16:43:32 2024 +0800
+
+    fix: session provider client
+
+[33mcommit da76dae2f59a61187fe5510f072fd5efc1fccb86[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 16:37:49 2024 +0800
+
+    change: minor api next auth
+
+[33mcommit 21c699cd7b2427e198410f12d2bf116caa63787e[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 16:37:22 2024 +0800
+
+    add: session provider next auth
+
+[33mcommit 18f5dbd31c5ce8725d61692a3b35889d6ed8f3db[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 16:36:46 2024 +0800
+
+    add: redirect after login
+
+[33mcommit 90b7b876217922c57ff82f2846938978f5064255[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 16:35:46 2024 +0800
+
+    add: my toast helper func
+
+[33mcommit ff2b8806cc2e04061f6e7b8576679e942e6eb497[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 15:41:05 2024 +0800
+
+    add: toast message
+
+[33mcommit 2039005c33809434fa04a4ff5d0984217feab2f1[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 15:29:43 2024 +0800
+
+    install: react-toastify, delete: react-hot-toast
+
+[33mcommit 349b4ceb2badafb24c8cfe31dfff33e8199a9560[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 15:15:51 2024 +0800
+
+    add: actions for auth
+
+[33mcommit d10ce5fa206c955c833f4789596337908032f1ce[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 14:10:37 2024 +0800
+
+    refactor: auth structure
+
+[33mcommit a79f4caf672656f5a5da557d5fcc2a98cdd25e71[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Tue Mar 12 14:10:13 2024 +0800
+
+    refactor: zod schema for login form
+
+[33mcommit f56f7b61074b2d5aa68c9dc54e0ba1fb4ad5a7a3[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 22:35:49 2024 +0800
+
+    change: validate confirm password in zod
+
+[33mcommit 26f779e067b3f59c0be8188bcd61f79068dbacef[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 22:30:31 2024 +0800
+
+    add: validate auth forms with zod and react-hook-form
+
+[33mcommit 3ea917c44f1aa4cb6a195ff0c1d1db07e7f1ce86[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 22:29:35 2024 +0800
+
+    install: zod
+
+[33mcommit c1d8e8be2a42a9d7bb96f9099cff7ec210269767[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:52:58 2024 +0800
+
+    delete: server actions
+
+[33mcommit 0108bc88460a7bfa0e3bd597c90ee937f073f162[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:52:26 2024 +0800
+
+    install: zod
+
+[33mcommit a0fb1469b821dad71a223b2d33836e86b0dbe2c2[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:46:32 2024 +0800
+
+    fix: next-auth build error
+
+[33mcommit 570d70646d60d02968f12463a74c4afc504c17b7[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:44:07 2024 +0800
+
+    fix: next-auth build error
+
+[33mcommit bf3792bd2c1354b46532576c8a4b702515050a66[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:41:47 2024 +0800
+
+    fix: next-auth build error
+
+[33mcommit 4fde6d774bf0fb4883e82566b0219cfc65748b68[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:38:10 2024 +0800
+
+    fix: next auth build error
+
+[33mcommit 8d5b3cf6f10eb77e2be59c8bdc16a30dfd23ffb1[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:33:03 2024 +0800
+
+    add: config next auth
+
+[33mcommit 2581dea4952a28ad18889ab84be2da39b7c2e8ac[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:16:49 2024 +0800
+
+    install: react-hook-form, react-hot-toast and next-auth
+
+[33mcommit cb07d8ec4ba7ffe9f686b188c18043deb6ee0cfe[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Mon Mar 11 19:08:09 2024 +0800
+
+    save: intermediate state until refactor
+
+[33mcommit 3a6a09603d3163a9b4aa22de81ceb724b56b2c03[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sun Mar 10 22:18:21 2024 +0800
+
+    change: FormAction type
+
+[33mcommit b96ea7157b3749d40ebb91638451847ba1ed0acc[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sun Mar 10 15:52:14 2024 +0800
+
+    add: registration and login next server actions
+
+[33mcommit 92326a3d42498add6343ad25e4a4cafe14e7a1a9[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sun Mar 10 15:51:21 2024 +0800
+
+    change: layout form
+
+[33mcommit 97c7d3c07714a6f71cbdbcfb1f514f1711e82137[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sun Mar 10 15:50:09 2024 +0800
+
+    _
+
+[33mcommit 55c8f0bbfe7ffc130e37c18a17b4cb3fc45be8f0[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sun Mar 10 15:43:10 2024 +0800
+
+    install: cookie
+
+[33mcommit c186e63e581b828437635d3523ebab2c9fb0c7d9[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 18:14:06 2024 +0800
+
+    layout: registration and login pages
+
+[33mcommit 625a46ab35a7f015650de136ae525be60f9481e0[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 18:12:12 2024 +0800
+
+    install: axios and mui icons
+
+[33mcommit 83222f75ba887dc7a70b0e0e04ec70aca23b7da8[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 17:16:10 2024 +0800
+
+    refactor: nav link
+
+[33mcommit 5be0d496b06ae29c5469187e41e170865f6cbdb0[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 17:15:20 2024 +0800
+
+    install: axios
+
+[33mcommit 020c8ab6b551a6923f4eede8ec736b32e1507201[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 15:37:27 2024 +0800
+
+    change: project style with prettier
+
+[33mcommit d769dce38f559159684efaf890f24ba133a58a16[m
+Merge: f0f7332 93f467d
+Author: Skeër <141636684+EugeneTsydenov@users.noreply.github.com>
+Date:   Sat Mar 9 15:32:00 2024 +0800
+
+    Merge pull request #1 from EugeneTsydenov/layout
+    
+    Layout
+
+[33mcommit 93f467d100fa48119be10d682d802355fce1f6a3[m[33m ([m[1;31morigin/layout[m[33m, [m[1;32mlayout[m[33m)[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 15:25:31 2024 +0800
+
+    refactor: structure page
+
+[33mcommit bdfe6715af9af64f7492437ffcc0f478f327ef4e[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 15:18:01 2024 +0800
+
+    change: minor
+
+[33mcommit 79c7f34d896453b4ea7788ff2701447722312282[m
+Author: beginnerwebprogrammer <ecydenov110@gmail.com>
+Date:   Sat Mar 9 15:16:27 2024 +0800
+
+    install: uuid
+
+[33mcommit 01ceddb34b30927303f1559b5fb53b5f6c733e2d
