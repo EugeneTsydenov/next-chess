@@ -1,14 +1,12 @@
-'use client';
-
-import SessionProvider from '@/app/_providers/SessionProvider';
 import ThemeProvider from '@/app/_providers/ThemeProvider';
+import ReduxProvider from '@/app/_providers/ReduxProvider';
 import * as React from 'react';
 
 const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <SessionProvider>
+    <ReduxProvider>
       <ThemeProvider>{children}</ThemeProvider>
-    </SessionProvider>
+    </ReduxProvider>
   );
 };
 
