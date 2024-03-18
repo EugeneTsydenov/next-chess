@@ -1,8 +1,8 @@
 'use client';
 
-import { IDropDawnLink } from '@/widgets/layout/model/types/INavLinks';
-import { useHover } from '@/widgets/layout/lib/hooks/useHover';
-import DropDownMenu from '@/widgets/layout/ui/DropDownMenu';
+import { IDropDawnLink } from '@/widgets/header/model/types/INavLinks';
+import { useHover } from '@/widgets/header/lib/hooks/useHover';
+import DropDownMenu from '@/widgets/header/ui/DropDownMenu';
 import { MenuItem } from '@mui/material';
 import { NavLink } from '@/shared/ui';
 import * as React from 'react';

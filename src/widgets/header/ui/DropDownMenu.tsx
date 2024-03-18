@@ -1,5 +1,5 @@
-import { IDropDawnLink } from '@/widgets/layout/model/types/INavLinks';
-import DropDownItem from '@/widgets/layout/ui/DropDownItem';
+import { IDropDawnLink } from '@/widgets/header/model/types/INavLinks';
+import DropDownItem from '@/widgets/header/ui/DropDownItem';
 import { MenuList, Paper } from '@mui/material';
 import * as React from 'react';
 

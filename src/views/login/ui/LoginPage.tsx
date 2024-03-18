@@ -1,4 +1,3 @@
-import { AuthLayout } from '@/widgets/auth-layout';
 import { LoginForm } from '@/features/auth';
 import * as React from 'react';
 
@@ -7,11 +6,7 @@ interface LoginPageParams {
 }
 
 const LoginPage: React.FC<LoginPageParams> = ({ callbackUrl }) => {
-  return (
-    <AuthLayout>
-      <LoginForm callbackUrl={callbackUrl} />
-    </AuthLayout>
-  );
+  return <LoginForm callbackUrl={callbackUrl} />;
 };
 
 export default LoginPage;

@@ -1,4 +1,4 @@
-import { IDropDawnLink, INavBarLink } from '@/widgets/layout/model/types/INavLinks';
+import { IDropDawnLink, INavBarLink } from '@/widgets/header/model/types/INavLinks';
 import { v4 as uuidv4 } from 'uuid';
 
 const playDropDawnLinks: IDropDawnLink[] = (function () {

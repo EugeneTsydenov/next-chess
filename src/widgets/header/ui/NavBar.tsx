@@ -1,5 +1,5 @@
-import { navLinks } from '@/widgets/layout/lib/data/NavLinks';
-import NavBarItem from '@/widgets/layout/ui/NavBarItem';
+import { navLinks } from '@/widgets/header/lib/data/NavLinks';
+import NavBarItem from '@/widgets/header/ui/NavBarItem';
 import { Box, MenuList } from '@mui/material';
 import * as React from 'react';
 
