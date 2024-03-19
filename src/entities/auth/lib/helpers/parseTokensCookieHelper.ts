@@ -1,8 +1,7 @@
-import { AxiosResponse } from 'axios';
 import { parse } from 'cookie';
 
-export function parseTokensCookieHelper(res: AxiosResponse) {
-  const cookies = res.headers['set-cookie'];
+export function parseTokensCookieHelper(res: Response) {
+  const cookies = res.headers.getSetCookie();
   if (cookies) {
     const parsedRefreshTokenCookies = parse(cookies[0]);
     const parsedAccessTokenCookies = parse(cookies[1]);

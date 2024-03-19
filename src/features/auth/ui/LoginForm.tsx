@@ -28,7 +28,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ callbackUrl }) => {
     const res = await loginAction(data);
     if (res.status === 200) {
       myToast(res.message);
-      router.push(callbackUrl ? callbackUrl : '/');
+      router.push(callbackUrl ? callbackUrl : '/', { scroll: false });
     }
     if (res.status === 400 || res.status === 401 || res.status === 500) {
       myToast(res.message, { type: 'error' });

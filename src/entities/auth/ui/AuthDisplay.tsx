@@ -1,15 +1,28 @@
+import { cookies } from 'next/headers';
+import { api } from '@/shared/api';
+import { Link } from '@/shared/ui';
 import * as React from 'react';
 
-// async function getData() {
-//   const res = await fetch('http://localhost:52718/api/user', {
-//     cache: 'only-if-cached',
-//     mode: 'same-origin',
-//   });
-//   console.log(res.statusText, 'dasdas');
-//   return res.json();
-// }
+const getData = async () => {
+  const accessToken = cookies().get('accessToken')?.value;
+  const refreshToken = cookies().get('refreshToken')?.value;
+  if (accessToken) {
+    const res = await api.get('user', {
+      headers: { Cookie: `refreshToken=${refreshToken}`, Authorization: `Bearer ${accessToken}` },
+    });
+    const resData = await res.json();
+    console.log(resData);
+    return resData;
+  }
+};
 
 async function AuthDisplay() {
-  return <main></main>;
+  const user = await getData();
+
+  if (!user.username) {
+    return <Link href='/login'> Login</Link>;
+  }
+
+  return <main>{user.username}</main>;
 }
 export default AuthDisplay;

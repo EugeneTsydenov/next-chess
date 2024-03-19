@@ -1,6 +1,7 @@
 import { AppBar, Container, Paper, Toolbar } from '@mui/material';
 import { ThemeModeSwitcher } from '@/features/theme';
 import NavBar from '@/widgets/header/ui/NavBar';
+import { AuthDisplay } from '@/entities/auth';
 import { Link, Logo } from '@/shared/ui';
 import Box from '@mui/material/Box';
 import * as React from 'react';
@@ -49,6 +50,7 @@ const Header: React.FC = () => {
             </Box>
             <Box>
               <ThemeModeSwitcher />
+              <AuthDisplay />
             </Box>
           </Toolbar>
         </Container>
