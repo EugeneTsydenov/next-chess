@@ -1,1 +1,1 @@
-export { $axios } from './http';
+export { api } from './api';
