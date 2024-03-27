@@ -1,66 +1,133 @@
-interface IFetchConfig {
-  headers?: Record<string, string> | Headers;
-  cache?:
-    | 'default' // Кэширование запроса используя стандартное поведение браузера
-    | 'no-store' // Запрет кэширования
-    | 'reload' // Принудительная перезагрузка кэша
-    | 'no-cache' // Кэширование, но с проверкой на сервере перед использованием кэша
-    | 'force-cache' // Использование кэша без проверок на сервере
-    | 'only-if-cached'; // Использование кэша только если есть доступный
+interface IConfig {
+  url: string;
+  method?: string;
+  headers?: Headers | Record<string, string>;
+  body?: Body;
+  mode?: 'cors' | 'no-cors' | 'same-origin';
+  credentials?: 'same-origin' | 'include' | 'omit';
+  cache?: 'default' | 'no-store' | 'reload' | 'no-cache' | 'force-cache' | 'only-if-cached';
+  redirect?: 'follow' | 'error' | 'manual';
+  referrerPolicy?: string;
+  integrity?: string;
 }
 
 type Body =
-  | string // Тело запроса в виде строки
-  | FormData // Тело запроса в виде объекта FormData
-  | URLSearchParams // Тело запроса в виде URLSearchParams
-  | ReadableStream<Uint8Array> // Тело запроса в виде потока чтения
+  | string
+  | FormData
+  | URLSearchParams
+  | ReadableStream<Uint8Array>
   | null
   | undefined
   | Record<string, any>;
 
+interface IHttpRequestInterceptor {
+  onFulfilled: (config: IConfig) => Promise<IConfig> | IConfig;
+  onRejected: (error: any, originRequest: IConfig) => Promise<any> | any;
+}
+
+interface IHttpResponseInterceptor {
+  onFulfilled: (response: Response) => Promise<Response> | Response;
+  onRejected: (resError: any, originalRequest: IConfig) => Promise<any> | any;
+}
+
+const baseConfig: IConfig = {
+  url: '',
+  headers: {},
+  method: 'GET',
+  body: undefined,
+  mode: 'cors',
+  cache: 'default',
+  redirect: 'follow',
+  referrerPolicy: 'strict-origin-when-cross-origin',
+  integrity: '',
+};
+
 export class Http {
   httpConfig: { baseUrl: string; withCredentials: boolean };
+  requestInterceptors: IHttpRequestInterceptor[] = [];
+  responseInterceptors: IHttpResponseInterceptor[] = [];
+
   constructor(httpConfig: { baseUrl: string; withCredentials: boolean }) {
     this.httpConfig = httpConfig;
   }
-
-  private async fetch(
-    url: string,
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE',
-    config: IFetchConfig | null | undefined,
-    body?: Body,
-  ) {
+  private async fetch(fetchConfig: IConfig) {
     try {
-      const res = await fetch(`${this.httpConfig.baseUrl}/${url}`, {
-        method,
-        body: JSON.stringify(body),
+      const fullConfig = { ...baseConfig, ...fetchConfig };
+      const modifiedConfig = await this.applyFulfilledRequestInterceptor(fullConfig);
+      const res = await fetch(`${this.httpConfig.baseUrl}/${modifiedConfig.url}`, {
+        method: modifiedConfig.method,
+        ...modifiedConfig,
+        body: JSON.stringify(modifiedConfig.body),
         headers: {
           'Content-Type': 'application/json',
+          ...modifiedConfig.headers,
         },
-        ...config,
         credentials: this.httpConfig.withCredentials ? 'include' : 'same-origin',
+        referrerPolicy: modifiedConfig.referrerPolicy as undefined,
       });
-      return res;
+      if (res.statusText === 'OK') {
+        return await this.applyFulfilledResponseInterceptor(res);
+      } else {
+        return await this.applyRejectedResponseInterceptor(res, fetchConfig);
+      }
     } catch (e: any) {
-      console.log(e, 'fetch errro');
-      return await e.json;
+      return await this.applyRejectedRequestInterceptor(e, fetchConfig);
     }
   }
 
-  public async get(url: string, config?: IFetchConfig) {
-    return await this.fetch(url, 'GET', config);
+  public useRequestInterceptor(interceptor: IHttpRequestInterceptor) {
+    this.requestInterceptors.push(interceptor);
   }
 
-  public async post(url: string, body: Body, config?: IFetchConfig) {
-    const res = await this.fetch(url, 'POST', config, body);
-    return res;
+  public useResponseInterceptor(interceptor: IHttpResponseInterceptor) {
+    this.responseInterceptors.push(interceptor);
   }
 
-  public async put(url: string, body: Body, config?: IFetchConfig) {
-    return await this.fetch(url, 'PUT', config, body);
+  private async applyFulfilledRequestInterceptor(config: IConfig) {
+    for (const requestInterceptor of this.requestInterceptors) {
+      config = await requestInterceptor.onFulfilled(config);
+    }
+
+    return config;
   }
 
-  public async delete(url: string, body: Body, config?: IFetchConfig) {
-    return await this.fetch(url, 'DELETE', config, body);
+  private async applyRejectedRequestInterceptor(error: any, originalRequest: IConfig) {
+    for (const requestInterceptor of this.requestInterceptors) {
+      error = await requestInterceptor.onRejected(error, originalRequest);
+    }
+
+    return error;
+  }
+
+  private async applyFulfilledResponseInterceptor(response: Response) {
+    for (const responseInterceptor of this.responseInterceptors) {
+      response = await responseInterceptor.onFulfilled(response);
+    }
+
+    return response;
+  }
+
+  private async applyRejectedResponseInterceptor(error: any, originalRequest: IConfig) {
+    for (const responseInterceptor of this.responseInterceptors) {
+      error = await responseInterceptor.onRejected(error, originalRequest);
+    }
+
+    return error;
+  }
+
+  public async get(url: string, config?: Omit<IConfig, 'url'>) {
+    return await this.fetch({ url, method: 'GET', ...config });
+  }
+
+  public async post(url: string, body: Body, config?: Omit<IConfig, 'url'>) {
+    return await this.fetch({ url, body, method: 'POST', ...config });
+  }
+
+  public async put(url: string, body: Body, config?: Omit<IConfig, 'url'>) {
+    return await this.fetch({ url, body, method: 'PUT', ...config });
+  }
+
+  public async delete(url: string, body: Body, config?: Omit<IConfig, 'url'>) {
+    return await this.fetch({ url, body, method: 'DELETE', ...config });
   }
 }
