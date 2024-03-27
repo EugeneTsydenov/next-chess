@@ -1,3 +1,3 @@
 export { lightTheme, darkTheme } from './theme/theme';
-export { baseQuery } from '@/shared/config/rtkQuery/baseQuery';
-export { privateQuery } from '@/shared/config/rtkQuery/privateQuery';
+export { baseQuery } from './rtk-query/baseQuery';
+export { privateQuery } from './rtk-query/privateQuery';

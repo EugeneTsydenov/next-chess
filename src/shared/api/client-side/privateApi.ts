@@ -1,3 +1,5 @@
+'use client';
+
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { privateQuery } from '@/shared/config';
 
