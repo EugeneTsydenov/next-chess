@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @type {{experimental: {serverActions: boolean}}} */
 const nextConfig = {};
 
 export default nextConfig;
