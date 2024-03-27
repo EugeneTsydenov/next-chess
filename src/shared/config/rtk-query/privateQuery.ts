@@ -19,22 +19,26 @@ export const privateQuery: BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError> 
   extraOptions,
 ) => {
   let result = await baseQuery(args, api, extraOptions);
+
   if (result.error && result.error.status === 401) {
     const refreshResult: QueryReturnValue<
       RefreshResponse,
       FetchBaseQueryError,
       FetchBaseQueryMeta
     > = await baseQuery('/refresh', api, extraOptions);
+
     if (refreshResult.data?.jwt) {
       const newArgs: FetchArgs = {
         ...args,
         headers: { Authorization: `Bearer ${refreshResult.data.jwt}` },
       };
+
       result = await baseQuery(newArgs, api, extraOptions);
       api.dispatch(setJwt(refreshResult.data.jwt));
     } else {
       api.dispatch(setJwt(null));
     }
   }
+
   return result;
 };
