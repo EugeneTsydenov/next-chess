@@ -51,7 +51,6 @@ const Header: React.FC = () => {
             <Box display='flex' alignItems='center' gap={1}>
               <ThemeModeSwitcher />
               <HeaderDisplay />
-              <Link href='/play/online'>Online</Link>
             </Box>
           </Toolbar>
         </Container>
