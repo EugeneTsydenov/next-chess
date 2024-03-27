@@ -37,12 +37,12 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, permission })
   return (
     <>
       {permission === 'notAuthUser' && (!isWindow || isLoading || data?.jwt) ? (
-        <FullPageLoader />
+        <FullPageLoader zIndex={100000} />
       ) : (
         ''
       )}
       {permission === 'authUser' && (!isWindow || isLoading || !data?.jwt) ? (
-        <FullPageLoader />
+        <FullPageLoader zIndex={1} />
       ) : (
         ''
       )}

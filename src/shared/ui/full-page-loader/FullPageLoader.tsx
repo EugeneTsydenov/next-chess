@@ -3,7 +3,7 @@
 import { Box, CircularProgress, Paper } from '@mui/material';
 import * as React from 'react';
 
-const FullPageLoader: React.FC = () => {
+const FullPageLoader: React.FC<{ zIndex: number }> = ({ zIndex }) => {
   return (
     <Box
       component={Paper}
@@ -16,7 +16,7 @@ const FullPageLoader: React.FC = () => {
         bottom: '0px',
         right: '0px',
         left: '0px',
-        zIndex: 10000,
+        zIndex,
       }}
     >
       <CircularProgress color='primary' />
