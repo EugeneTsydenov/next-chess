@@ -37,17 +37,6 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
               Login to open new opportunities
             </Typography>
             {children}
-            <Box
-              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-              width='100%'
-            >
-              <Link href='#'>
-                <Typography>Forgot password?</Typography>
-              </Link>
-              <Link href='#'>
-                <Typography>Dont have an account? Sign Up</Typography>
-              </Link>
-            </Box>
           </Box>
         </Box>
       </Box>

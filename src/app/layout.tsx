@@ -1,7 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Providers } from '@/app/_providers';
-import { cookies } from 'next/headers';
 import type { Metadata } from 'next';
 import './_styles/globals.css';
 import * as React from 'react';
