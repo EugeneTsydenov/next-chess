@@ -1,2 +1,1 @@
-export { $authAxios } from './api/authHttp';
-export { default as AuthDisplay } from './ui/AuthDisplay';
+export { authApi } from './api/authApi';
