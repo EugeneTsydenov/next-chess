@@ -1,7 +1,8 @@
+import { ProtectedRoute } from '@/entities/auth';
 import * as React from 'react';
 
 const PlayPage: React.FC = () => {
-  return <>Play</>;
+  return <ProtectedRoute permission='all'>Play</ProtectedRoute>;
 };
 
 export default PlayPage;

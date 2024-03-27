@@ -4,3 +4,4 @@ export { default as Logo } from './logo/Logo';
 export { default as Chessboard } from './chessboard/Chessboard';
 export { default as AuthTitle } from './auth-title/AuthTitle';
 export { default as UserDisplay } from './user-display/UserDisplay';
+export { default as FullPageLoader } from './full-page-loader/FullPageLoader';
