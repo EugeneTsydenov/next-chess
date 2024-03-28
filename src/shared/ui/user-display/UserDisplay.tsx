@@ -1,4 +1,4 @@
-import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import * as React from 'react';
 
 interface UserDisplayProps {
@@ -9,11 +9,7 @@ interface UserDisplayProps {
 const UserDisplay: React.FC<UserDisplayProps> = ({ avatar, username }) => {
   return (
     <Box display='flex' alignItems='center' gap={1}>
-      <Tooltip title='Open settings'>
-        <IconButton sx={{ p: 0 }}>
-          <Avatar alt='Remy Sharp' src={avatar} />
-        </IconButton>
-      </Tooltip>
+      <Avatar alt='Remy Sharp' src={avatar} />
       <Typography component='span'>{username}</Typography>
     </Box>
   );

@@ -1,1 +1,2 @@
-export { default as UserDisplay } from './ui/UserHeaderDisplay';
+export { userResponseSchema } from './model/schemas/userResponseSchema';
+export { useUserQuery } from './api/userApi';

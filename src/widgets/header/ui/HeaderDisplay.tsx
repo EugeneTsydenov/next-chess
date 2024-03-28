@@ -1,8 +1,8 @@
 'use client';
 
+import HeaderUserDisplay from '@/widgets/header/ui/HeaderUserDisplay';
 import { useAppSelector, useWindow } from '@/shared/lib';
 import { Button, Skeleton } from '@mui/material';
-import { UserDisplay } from '@/entities/user';
 import { jwtSelector } from '@/shared/model';
 import { Link } from '@/shared/ui';
 import * as React from 'react';
@@ -23,7 +23,7 @@ const HeaderDisplay: React.FC = () => {
     );
   }
 
-  return <UserDisplay jwt={jwt} />;
+  return <HeaderUserDisplay jwt={jwt} />;
 };
 
 export default HeaderDisplay;

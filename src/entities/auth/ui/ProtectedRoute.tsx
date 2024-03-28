@@ -17,6 +17,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, permission })
   const router = useRouter();
   const isWindow = useWindow();
   const { data, isSuccess, isLoading } = useRefreshQuery(null);
+  console.log(data);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
