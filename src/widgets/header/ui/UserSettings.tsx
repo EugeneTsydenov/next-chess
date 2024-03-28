@@ -1,5 +1,5 @@
 import LogoutSetting from '@/widgets/header/ui/LogoutSetting';
-import { Menu, MenuItem, Typography } from '@mui/material';
+import { Menu } from '@mui/material';
 import * as React from 'react';
 
 interface UserListProps {
@@ -16,7 +16,6 @@ const UserSettings: React.FC<UserListProps> = ({ anchorElUser, handleCloseUserMe
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'left',
-        x,
       }}
       keepMounted
       transformOrigin={{
