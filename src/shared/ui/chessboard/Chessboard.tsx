@@ -3,7 +3,11 @@
 import { Chessboard as ReactChessboard } from 'react-chessboard';
 import * as React from 'react';
 
-const Chessboard: React.FC = () => {
+interface ChessboardProps {
+  boardWidth: number;
+}
+
+const Chessboard: React.FC<ChessboardProps> = ({ boardWidth }) => {
   return (
     <ReactChessboard
       customBoardStyle={{
@@ -12,7 +16,7 @@ const Chessboard: React.FC = () => {
       }}
       customDarkSquareStyle={{ backgroundColor: '#779952' }}
       customLightSquareStyle={{ backgroundColor: '#edeed1' }}
-      boardWidth={770}
+      boardWidth={boardWidth}
     />
   );
 };

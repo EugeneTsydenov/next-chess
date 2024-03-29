@@ -1,3 +1,5 @@
+'use client';
+
 import { AuthTitle, Chessboard } from '@/shared/ui';
 import { Paper, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -10,7 +12,7 @@ interface AuthLayoutProps {
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   return (
     <Box component='main' sx={{ height: '100vh', display: 'flex' }}>
-      <Chessboard />
+      <Chessboard boardWidth={770} />
       <Box component={Paper} sx={{ width: '100%' }}>
         <Box
           sx={{
