@@ -2,23 +2,28 @@
 
 import { refreshResponseSchema } from '@/entities/auth/model/schemas/refreshResponseSchema';
 import { useRefreshQuery } from '@/entities/auth/api/authApi';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAppDispatch, useWindow } from '@/shared/lib';
 import { FullPageLoader } from '@/shared/ui';
-import { useRouter } from 'next/navigation';
 import { setJwt } from '@/shared/model';
 import * as React from 'react';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  permission: 'all' | 'authUser' | 'notAuthUser';
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, permission }) => {
+const authPrivateRoutes = ['/play/online'];
+const notAuthPrivateRoutes = ['/login', '/registration'];
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const isWindow = useWindow();
   const { data, isSuccess, isLoading } = useRefreshQuery(null);
-  console.log(data);
   const dispatch = useAppDispatch();
+
+  const isAuthRoute = authPrivateRoutes.includes(pathname);
+  const isNotAuthRoute = notAuthPrivateRoutes.includes(pathname);
 
   React.useEffect(() => {
     if (isSuccess) {
@@ -27,26 +32,22 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, permission })
     }
   }, [data, dispatch, isSuccess]);
 
-  if (permission === 'authUser' && isWindow && !isLoading && !data?.jwt) {
+  if (isAuthRoute && isWindow && !isLoading && !data?.jwt) {
     router.push('/');
   }
 
-  if (permission === 'notAuthUser' && isWindow && !isLoading && data?.jwt) {
+  if (isNotAuthRoute && isWindow && !isLoading && data?.jwt) {
     router.push('/');
   }
 
   return (
     <>
-      {permission === 'notAuthUser' && (!isWindow || isLoading || data?.jwt) ? (
+      {isNotAuthRoute && (!isWindow || isLoading || data?.jwt) ? (
         <FullPageLoader zIndex={100000} />
       ) : (
         ''
       )}
-      {permission === 'authUser' && (!isWindow || isLoading || !data?.jwt) ? (
-        <FullPageLoader zIndex={1} />
-      ) : (
-        ''
-      )}
+      {isAuthRoute && (!isWindow || isLoading || !data?.jwt) ? <FullPageLoader zIndex={1} /> : ''}
       {children}
     </>
   );

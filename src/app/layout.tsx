@@ -1,3 +1,4 @@
+import { ProtectedRoute } from '@/entities/auth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Providers } from '@/app/_providers';
@@ -19,7 +20,7 @@ export default async function RootLayout({
     <html lang='en'>
       <body>
         <Providers>
-          {children}
+          <ProtectedRoute>{children}</ProtectedRoute>
           <ToastContainer />
         </Providers>
       </body>

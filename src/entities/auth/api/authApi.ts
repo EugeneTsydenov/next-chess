@@ -6,6 +6,9 @@ import { baseQuery } from '@/shared/config';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: baseQuery,
+  refetchOnFocus: false,
+  refetchOnMountOrArgChange: false,
+  refetchOnReconnect: false,
   endpoints: build => ({
     refresh: build.query({
       query: () => {
@@ -14,6 +17,7 @@ export const authApi = createApi({
           url: '/refresh',
         };
       },
+      extraOptions: { maxRetries: 0 },
     }),
   }),
 });
