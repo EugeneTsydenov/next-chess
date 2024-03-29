@@ -1,3 +1,6 @@
+import { ProtectedRoute } from '@/entities/auth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Providers } from '@/app/_providers';
 import type { Metadata } from 'next';
 import './_styles/globals.css';
@@ -8,7 +11,7 @@ export const metadata: Metadata = {
   description: 'The Best web site for chess online',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -16,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <ProtectedRoute>{children}</ProtectedRoute>
+          <ToastContainer />
+        </Providers>
       </body>
     </html>
   );
