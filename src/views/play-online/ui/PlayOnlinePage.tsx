@@ -1,11 +1,8 @@
+import { MatchmakingModal } from '@/widgets/matchmaking-modal';
 import * as React from 'react';
 
 const PlayOnlinePage: React.FC = () => {
-  return (
-    <>
-      <div>Play Online</div>
-    </>
-  );
+  return <MatchmakingModal />;
 };
 
 export default PlayOnlinePage;
