@@ -14,6 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { setJwt } from '@/shared/model/jwt/jwtSlice';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
+import { authApi } from '@/entities/auth';
 import { Link } from '@/shared/ui';
 import * as React from 'react';
 
@@ -39,6 +40,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ callbackUrl }) => {
         const validatedData = loginSuccessResponseSchema.parse(resData);
         myToast(validatedData.data.message);
         dispatch(setJwt(validatedData.jwt));
+        dispatch(authApi.util?.upsertQueryData('refresh', null, { jwt: validatedData.jwt }));
         router.push(callbackUrl ? callbackUrl : '/');
       } else {
         const validatedData = loginErrorResponseSchema.parse(resData);

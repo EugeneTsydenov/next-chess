@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, CircularProgress, Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import * as React from 'react';
 
 const FullPageLoader: React.FC<{ zIndex: number }> = ({ zIndex }) => {
@@ -17,10 +17,9 @@ const FullPageLoader: React.FC<{ zIndex: number }> = ({ zIndex }) => {
         right: '0px',
         left: '0px',
         zIndex,
+        bgcolor: '#3d3d3d',
       }}
-    >
-      <CircularProgress color='primary' />
-    </Box>
+    ></Box>
   );
 };
 
