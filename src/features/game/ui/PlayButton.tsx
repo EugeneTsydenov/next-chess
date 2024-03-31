@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import * as React from 'react';
 
-const FindGame: React.FC = () => {
+const PlayButton: React.FC = () => {
   return (
     <Button fullWidth variant='contained' sx={{ p: 2 }}>
       <Typography variant='h4' fontWeight={700}>
@@ -11,4 +11,4 @@ const FindGame: React.FC = () => {
   );
 };
 
-export default FindGame;
+export default PlayButton;
