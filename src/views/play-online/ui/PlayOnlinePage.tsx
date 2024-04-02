@@ -1,5 +1,5 @@
 import { GameTabPanel } from '@/widgets/game-tab-panel';
-import { Chessboard } from '@/shared/ui';
+import { GameWidget } from '@/widgets/game';
 import { Box } from '@mui/material';
 import * as React from 'react';
 
@@ -16,7 +16,7 @@ const PlayOnlinePage: React.FC = () => {
         mt='8vh'
       >
         <GameTabPanel />
-        <Chessboard boardWidth={560} />
+        <GameWidget />
         <GameTabPanel />
       </Box>
     </Box>
