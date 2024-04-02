@@ -16,7 +16,7 @@ const TimeModeItem: React.FC<TimeModeProps> = ({ time, toggleVisibleTimeModes })
         p: 2,
         bgcolor: 'background.default',
         width: '100%',
-        borderRadius: '10px',
+        borderRadius: '5px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
