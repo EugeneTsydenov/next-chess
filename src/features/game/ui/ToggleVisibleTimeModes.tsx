@@ -16,7 +16,7 @@ const toggleVisibleTimeModes: React.FC<ToggleTimeModesBtnProps> = ({
     <Box
       onClick={toggleVisibleTimeModes}
       bgcolor='background.default'
-      borderRadius='5px'
+      borderRadius='10px'
       p={2}
       display='flex'
       alignItems='center'

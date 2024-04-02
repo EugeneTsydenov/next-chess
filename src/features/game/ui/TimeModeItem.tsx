@@ -15,7 +15,7 @@ const TimeModeItem: React.FC<TimeModeProps> = ({ time }) => {
         p: 2,
         bgcolor: 'background.default',
         width: '100%',
-        borderRadius: '5px',
+        borderRadius: '10px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

@@ -3,8 +3,8 @@ import * as React from 'react';
 
 const PlayButton: React.FC = () => {
   return (
-    <Button fullWidth variant='contained' sx={{ p: 2 }}>
-      <Typography variant='h4' fontWeight={700}>
+    <Button fullWidth variant='contained' sx={{ p: 1.5, borderRadius: '10px' }}>
+      <Typography variant='h4' fontWeight={600}>
         Play
       </Typography>
     </Button>
