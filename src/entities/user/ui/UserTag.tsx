@@ -1,14 +1,20 @@
+'use client';
+
 import { userResponseSchema } from '@/entities/user/model/schemas/userResponseSchema';
+import { AvatarPropsVariantOverrides, Skeleton } from '@mui/material';
 import { useUserQuery } from '@/entities/user/api/userApi';
+import { OverridableStringUnion } from '@mui/types';
 import { UserDisplay } from '@/shared/ui';
-import { Skeleton } from '@mui/material';
 import * as React from 'react';
 
 interface UserTagProps {
   jwt: string;
+  avatarVariant:
+    | OverridableStringUnion<'circular' | 'rounded' | 'square', AvatarPropsVariantOverrides>
+    | undefined;
 }
 
-const UserTag: React.FC<UserTagProps> = ({ jwt }) => {
+const UserTag: React.FC<UserTagProps> = ({ jwt, avatarVariant }) => {
   const { data, isLoading, isSuccess } = useUserQuery(jwt);
 
   if (isLoading) {
@@ -22,7 +28,13 @@ const UserTag: React.FC<UserTagProps> = ({ jwt }) => {
 
   if (isSuccess) {
     const validatedData = userResponseSchema.parse(data);
-    return <UserDisplay username={validatedData?.username} avatar={validatedData?.avatar} />;
+    return (
+      <UserDisplay
+        username={validatedData?.username}
+        avatar={validatedData?.avatar}
+        avatarVariant={avatarVariant}
+      />
+    );
   }
 };
 

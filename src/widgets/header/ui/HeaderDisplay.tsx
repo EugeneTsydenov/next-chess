@@ -36,7 +36,7 @@ const HeaderDisplay: React.FC = () => {
     <>
       <Tooltip title='Open settings'>
         <Button sx={{ textTransform: 'none' }} color='inherit' onClick={handleOpenUserMenu}>
-          <UserTag jwt={jwt} />
+          <UserTag jwt={jwt} avatarVariant='circular' />
         </Button>
       </Tooltip>
       <UserSettings anchorElUser={anchorElUser} handleCloseUserMenu={handleCloseUserMenu} />
