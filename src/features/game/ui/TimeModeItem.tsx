@@ -1,3 +1,5 @@
+import { useAppDispatch } from '@/shared/lib';
+import { setTime } from '@/entities/game';
 import { MenuItem } from '@mui/material';
 import * as React from 'react';
 
@@ -10,6 +12,13 @@ export interface TimeModeProps {
 }
 
 const TimeModeItem: React.FC<TimeModeProps> = ({ time, toggleVisibleTimeModes }) => {
+  const dispatch = useAppDispatch();
+
+  function selectTimeMode() {
+    toggleVisibleTimeModes();
+    dispatch(setTime(time));
+  }
+
   return (
     <MenuItem
       sx={{
@@ -21,6 +30,7 @@ const TimeModeItem: React.FC<TimeModeProps> = ({ time, toggleVisibleTimeModes })
         alignItems: 'center',
         justifyContent: 'center',
       }}
+      onClick={selectTimeMode}
     >
       {time.timeTitle}
     </MenuItem>
