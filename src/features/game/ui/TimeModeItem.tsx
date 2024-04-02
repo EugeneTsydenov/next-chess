@@ -6,9 +6,10 @@ export interface TimeModeProps {
     timeTitle: string;
     seconds: number;
   };
+  toggleVisibleTimeModes: () => void;
 }
 
-const TimeModeItem: React.FC<TimeModeProps> = ({ time }) => {
+const TimeModeItem: React.FC<TimeModeProps> = ({ time, toggleVisibleTimeModes }) => {
   return (
     <MenuItem
       sx={{

@@ -5,7 +5,11 @@ import { TimeModeItem } from '@/features/game';
 import Image from 'next/image';
 import * as React from 'react';
 
-const TimeModesList: React.FC = () => {
+interface TimeModeProps {
+  toggleVisibleTimeModes: () => void;
+}
+
+const TimeModesList: React.FC<TimeModeProps> = ({ toggleVisibleTimeModes }) => {
   return (
     <MenuList sx={{ mt: 2 }}>
       {timeModes.map((timeMode, i) => {
@@ -30,7 +34,13 @@ const TimeModesList: React.FC = () => {
               }}
             >
               {timeMode.times.map((time, i) => {
-                return <TimeModeItem time={time} key={i} />;
+                return (
+                  <TimeModeItem
+                    time={time}
+                    key={i}
+                    toggleVisibleTimeModes={toggleVisibleTimeModes}
+                  />
+                );
               })}
             </MenuList>
           </Box>

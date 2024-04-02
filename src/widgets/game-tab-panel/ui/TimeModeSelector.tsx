@@ -15,7 +15,7 @@ const TimeModeSelector: React.FC = () => {
         toggleVisibleTimeModes={toggleVisibleTimeModes}
         isVisibleTimeModes={isVisibleTimeModes}
       />
-      {isVisibleTimeModes && <TimeModesList />}
+      {isVisibleTimeModes && <TimeModesList toggleVisibleTimeModes={toggleVisibleTimeModes} />}
     </Box>
   );
 };

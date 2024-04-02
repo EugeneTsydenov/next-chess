@@ -1,7 +1,7 @@
 'use client';
 
+import { BlackTimer, GameChessboard, WhiteTimer } from '@/entities/game';
 import { useAppSelector, useWindow } from '@/shared/lib';
-import { GameChessboard } from '@/entities/game';
 import { jwtSelector } from '@/shared/model';
 import { UserTag } from '@/entities/user';
 import { UserDisplay } from '@/shared/ui';
@@ -14,9 +14,15 @@ const GameWidget: React.FC = () => {
 
   return (
     <Box display='flex' flexDirection='column' gap={1}>
-      <UserDisplay avatarVariant='square' username='Enemy' />
+      <Box display='flex' alignItems='center' justifyContent='space-between'>
+        <UserDisplay avatarVariant='square' username='Enemy' />
+        <BlackTimer />
+      </Box>
       <GameChessboard />
-      {isWindow && jwt ? <UserTag jwt={jwt} avatarVariant='square' /> : ''}
+      <Box display='flex' alignItems='center' justifyContent='space-between'>
+        {isWindow && jwt ? <UserTag jwt={jwt} avatarVariant='square' /> : ''}
+        <WhiteTimer />
+      </Box>
     </Box>
   );
 };
