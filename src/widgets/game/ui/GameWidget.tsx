@@ -1,6 +1,6 @@
 'use client';
 
-import { BlackTimer, GameChessboard, WhiteTimer } from '@/entities/game';
+import { BlackTimer, GameChessboard, userSideSelector, WhiteTimer } from '@/entities/game';
 import { useAppSelector, useWindow } from '@/shared/lib';
 import { jwtSelector } from '@/shared/model';
 import { UserTag } from '@/entities/user';
@@ -11,17 +11,18 @@ import * as React from 'react';
 const GameWidget: React.FC = () => {
   const jwt = useAppSelector(jwtSelector);
   const isWindow = useWindow();
+  const userSide = useAppSelector(userSideSelector);
 
   return (
     <Box display='flex' flexDirection='column' gap={1}>
       <Box display='flex' alignItems='center' justifyContent='space-between'>
         <UserDisplay avatarVariant='square' username='Enemy' />
-        <BlackTimer />
+        {userSide === 'b' ? <WhiteTimer /> : <BlackTimer />}
       </Box>
       <GameChessboard />
       <Box display='flex' alignItems='center' justifyContent='space-between'>
         {isWindow && jwt ? <UserTag jwt={jwt} avatarVariant='square' /> : ''}
-        <WhiteTimer />
+        {userSide === 'w' ? <WhiteTimer /> : <BlackTimer />}
       </Box>
     </Box>
   );

@@ -9,6 +9,7 @@ const initialState = {
   },
   fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
   enemy: null,
+  userSide: 'w',
 };
 
 const gameSlice = createSlice({
@@ -30,8 +31,12 @@ const gameSlice = createSlice({
     setEnemy: (state, action) => {
       state.enemy = action.payload;
     },
+    setUserSide: (state, action) => {
+      state.enemy = action.payload;
+    },
   },
 });
 
 export const gameReducer = gameSlice.reducer;
-export const { setGameMode, toggleTurn, setTime, setFen, setEnemy } = gameSlice.actions;
+export const { setGameMode, toggleTurn, setTime, setFen, setEnemy, setUserSide } =
+  gameSlice.actions;
