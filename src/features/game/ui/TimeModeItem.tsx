@@ -1,6 +1,6 @@
+import { MenuItem, Typography } from '@mui/material';
 import { useAppDispatch } from '@/shared/lib';
 import { setTime } from '@/entities/game';
-import { MenuItem } from '@mui/material';
 import * as React from 'react';
 
 export interface TimeModeProps {
@@ -32,7 +32,9 @@ const TimeModeItem: React.FC<TimeModeProps> = ({ time, toggleVisibleTimeModes })
       }}
       onClick={selectTimeMode}
     >
-      {time.timeTitle}
+      <Typography variant='h5' component='span' fontWeight={500}>
+        {time.timeTitle}
+      </Typography>
     </MenuItem>
   );
 };

@@ -9,7 +9,7 @@ const WhiteTimer: React.FC = () => {
   const formattedTime = formatterTime(time.seconds);
 
   return (
-    <Box py={1} pr={2} pl={7} bgcolor='primary.dark' borderRadius='4px'>
+    <Box py={1} pr={2} pl={8} bgcolor='primary.dark' borderRadius='4px'>
       <Typography variant='h4' component='span' fontWeight={600}>
         {formattedTime}
       </Typography>

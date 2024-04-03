@@ -9,7 +9,7 @@ const BlackTimer: React.FC = () => {
   const formattedTime = formatterTime(time.seconds);
 
   return (
-    <Box py={1} pr={2} pl={7} component={Paper}>
+    <Box py={1} pr={2} pl={8} component={Paper}>
       <Typography variant='h4' component='span' fontWeight={600}>
         {formattedTime}
       </Typography>
