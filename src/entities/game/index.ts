@@ -4,4 +4,4 @@ export { default as WhiteTimer } from './ui/WhiteTimer';
 export { default as BlackTimer } from './ui/BlackTimer';
 export { setTime } from './model/redux/gameSlice';
 export { timeSelector } from './model/redux/gameSelectors';
-export { userSideSelector } from './model/redux/gameSelectors';
+export { userSideSelector, userRoleSelector } from './model/redux/gameSelectors';

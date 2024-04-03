@@ -1,6 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface GameState {
+  gameMode: string | null;
+  turn: 'w' | 'b';
+  time: {
+    timeTitle: string;
+    seconds: number;
+  };
+  fen: string;
+  enemy: string | null;
+  userSide: 'w' | 'b';
+  userRole: 'watcher' | 'player';
+}
+
+const initialState: GameState = {
   gameMode: null,
   turn: 'w',
   time: {
@@ -10,6 +23,7 @@ const initialState = {
   fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
   enemy: null,
   userSide: 'w',
+  userRole: 'watcher',
 };
 
 const gameSlice = createSlice({
@@ -34,9 +48,12 @@ const gameSlice = createSlice({
     setUserSide: (state, action) => {
       state.enemy = action.payload;
     },
+    setUserRole: (state, action) => {
+      state.userRole = action.payload;
+    },
   },
 });
 
 export const gameReducer = gameSlice.reducer;
-export const { setGameMode, toggleTurn, setTime, setFen, setEnemy, setUserSide } =
+export const { setGameMode, toggleTurn, setTime, setFen, setEnemy, setUserSide, setUserRole } =
   gameSlice.actions;

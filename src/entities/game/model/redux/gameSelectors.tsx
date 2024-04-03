@@ -6,3 +6,4 @@ export const timeSelector = (state: RootState) => state.game.time;
 export const fenSelector = (state: RootState) => state.game.fen;
 export const enemySelector = (state: RootState) => state.game.enemy;
 export const userSideSelector = (state: RootState) => state.game.userSide;
+export const userRoleSelector = (state: RootState) => state.game.userRole;
