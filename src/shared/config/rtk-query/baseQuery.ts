@@ -1,9 +1,8 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query';
-
-const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
+import { BASE_API_URL } from '@/shared/lib';
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_API_URL,
+  baseUrl: `${BASE_API_URL}/api`,
   credentials: 'include',
   timeout: 3000,
 });
