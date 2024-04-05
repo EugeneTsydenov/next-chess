@@ -1,11 +1,13 @@
 import { logoutAction } from '@/features/auth/lib/actions/logoutAction';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import sadSmile from '../../../../public/sad-smile.png';
 import { setJwt } from '@/shared/model/jwt/jwtSlice';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import { jwtSelector } from '@/shared/model';
 import { authApi } from '@/entities/auth';
+import Image from 'next/image';
 import * as React from 'react';
 
 interface LogoutModalProps {
@@ -42,7 +44,6 @@ const LogoutModal: React.FC<LogoutModalProps> = ({ showLogoutModal, setShowLogou
           width: 550,
           boxShadow: 24,
           borderRadius: '10px',
-          height: 200,
           p: 3,
         }}
         display='flex'
@@ -53,6 +54,7 @@ const LogoutModal: React.FC<LogoutModalProps> = ({ showLogoutModal, setShowLogou
         <Typography variant='h3' component='h3'>
           Are you sure you want to logout?
         </Typography>
+        <Image src={sadSmile} alt='sad smile' width={80} />
         <Box display='flex' alignItems='center' gap={5} width='100%' justifyContent='center'>
           <Button
             variant='contained'
