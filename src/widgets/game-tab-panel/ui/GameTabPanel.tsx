@@ -7,7 +7,7 @@ const GameTabPanel: React.FC = () => {
   return (
     <Box width='100%' component={Paper} height='100%' py={3} px={4} borderRadius='10px'>
       <TimeModeSelector />
-      <PlayButton />
+      <PlayButton gameMode='online' />
     </Box>
   );
 };
