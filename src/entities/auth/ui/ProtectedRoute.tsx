@@ -22,7 +22,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { data, isSuccess, isLoading } = useRefreshQuery(null);
   const dispatch = useAppDispatch();
 
-  const isAuthRoute = authPrivateRoutes.includes(pathname);
+  const isAuthRoute = authPrivateRoutes.includes(pathname) || pathname.includes('/game');
   const isNotAuthRoute = notAuthPrivateRoutes.includes(pathname);
 
   React.useEffect(() => {
