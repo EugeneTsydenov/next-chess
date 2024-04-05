@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface GameState {
+interface IGameState {
+  gameId: string | null;
   gameMode: string | null;
   turn: 'w' | 'b';
   time: {
@@ -9,11 +10,24 @@ interface GameState {
   };
   fen: string;
   enemy: string | null;
+  players: {
+    player1: {
+      userId: number;
+      socketId: string;
+      colorSide: 'w' | 'b';
+    };
+    player2: {
+      userId: number;
+      socketId: string;
+      colorSide: 'w' | 'b';
+    };
+  } | null;
   userSide: 'w' | 'b';
   userRole: 'watcher' | 'player';
 }
 
-const initialState: GameState = {
+const initialState: IGameState = {
+  gameId: null,
   gameMode: null,
   turn: 'w',
   time: {
@@ -23,6 +37,7 @@ const initialState: GameState = {
   fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
   enemy: null,
   userSide: 'w',
+  players: null,
   userRole: 'watcher',
 };
 
@@ -30,11 +45,14 @@ const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    setGameId: (state, action) => {
+      state.gameId = action.payload;
+    },
     setGameMode: (state, action) => {
       state.gameMode = action.payload;
     },
-    toggleTurn: state => {
-      state.turn = state.turn === 'w' ? 'b' : 'w';
+    setTurn: (state, action) => {
+      state.turn = action.payload;
     },
     setTime: (state, action) => {
       state.time = action.payload;
@@ -46,14 +64,26 @@ const gameSlice = createSlice({
       state.enemy = action.payload;
     },
     setUserSide: (state, action) => {
-      state.enemy = action.payload;
+      state.userSide = action.payload;
     },
     setUserRole: (state, action) => {
       state.userRole = action.payload;
+    },
+    setPlayers: (state, action) => {
+      state.players = action.payload;
     },
   },
 });
 
 export const gameReducer = gameSlice.reducer;
-export const { setGameMode, toggleTurn, setTime, setFen, setEnemy, setUserSide, setUserRole } =
-  gameSlice.actions;
+export const {
+  setGameId,
+  setGameMode,
+  setTurn,
+  setTime,
+  setFen,
+  setEnemy,
+  setUserSide,
+  setUserRole,
+  setPlayers,
+} = gameSlice.actions;
