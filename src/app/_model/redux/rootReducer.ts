@@ -8,6 +8,6 @@ export const rootReducer = combineSlices({
   [privateApi.reducerPath]: privateApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   jwt: jwtReducer,
-  game: gameReducer,
   matchmaking: matchmakingReducer,
+  game: gameReducer,
 });
