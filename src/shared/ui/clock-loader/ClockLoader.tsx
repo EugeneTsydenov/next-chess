@@ -7,8 +7,8 @@ const ClockLoader: React.FC = () => {
       xmlnsXlink='http://www.w3.org/1999/xlink'
       enable-background='new 0 0 128 128'
       viewBox='0 0 128 128'
-      width='100px'
-      height='100px'
+      width='40px'
+      height='40px'
     >
       <linearGradient
         id='a'
@@ -22,7 +22,7 @@ const ClockLoader: React.FC = () => {
           <animate
             attributeName='stop-opacity'
             values='1;0.5;1'
-            dur='1s'
+            dur='2s'
             repeatCount='indefinite'
           />
         </stop>
@@ -30,7 +30,7 @@ const ClockLoader: React.FC = () => {
           <animate
             attributeName='stop-opacity'
             values='1;0.5;1'
-            dur='1s'
+            dur='2s'
             repeatCount='indefinite'
           />
         </stop>
@@ -47,7 +47,7 @@ const ClockLoader: React.FC = () => {
           <animate
             attributeName='stop-opacity'
             values='1;0.5;1'
-            dur='1s'
+            dur='2s'
             repeatCount='indefinite'
           />
         </stop>
@@ -55,7 +55,7 @@ const ClockLoader: React.FC = () => {
           <animate
             attributeName='stop-opacity'
             values='1;0.5;1'
-            dur='1s'
+            dur='2s'
             repeatCount='indefinite'
           />
         </stop>
@@ -63,7 +63,7 @@ const ClockLoader: React.FC = () => {
           <animate
             attributeName='stop-opacity'
             values='1;0.5;1'
-            dur='1s'
+            dur='2s'
             repeatCount='indefinite'
           />
         </stop>
@@ -71,7 +71,7 @@ const ClockLoader: React.FC = () => {
           <animate
             attributeName='stop-opacity'
             values='1;0.5;1'
-            dur='1s'
+            dur='2s'
             repeatCount='indefinite'
           />
         </stop>
@@ -79,7 +79,7 @@ const ClockLoader: React.FC = () => {
           <animate
             attributeName='stop-opacity'
             values='1;0.5;1'
-            dur='1s'
+            dur='2s'
             repeatCount='indefinite'
           />
         </stop>
