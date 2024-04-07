@@ -2,11 +2,11 @@ import { userResponseType } from '@/entities/user/model/schemas/userResponseSche
 import { UserApi } from '@/entities/user/api/userApi';
 import { useQuery } from '@tanstack/react-query';
 
-export function useUser(id: string) {
+export function useMe() {
   return useQuery<userResponseType, Error>({
-    queryKey: ['user'],
+    queryKey: ['me'],
     queryFn: async () => {
-      const response = await UserApi.getUserById(id);
+      const response = await UserApi.getUser();
       return response.data;
     },
     refetchOnMount: false,

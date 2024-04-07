@@ -7,10 +7,10 @@ import {
   matchmakingStore,
   WhiteTimer,
 } from '@/entities/game';
+import { MeTag, UserTag } from '@/entities/user';
 import { Box, Skeleton } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { authStore } from '@/shared/model';
-import { UserTag } from '@/entities/user';
 import { UserDisplay } from '@/shared/ui';
 import { useWindow } from '@/shared/lib';
 import * as React from 'react';
@@ -34,10 +34,11 @@ const GameWidget: React.FC = observer(() => {
   return (
     <Box display='flex' flexDirection='column' gap={1}>
       <Box display='flex' alignItems='center' justifyContent='space-between'>
-        <UserDisplay
-          avatarVariant='square'
-          username={matchmakingStore.isLoading ? 'Search enemy...' : 'Enemy'}
-        />
+        {matchmakingStore.isLoading ? (
+          <UserDisplay avatarVariant='square' username='Search enemy...' />
+        ) : (
+          <UserTag avatarVariant='square' userId={gameStore.enemy!} />
+        )}
         {gameStore.userSide === 'b' ? <WhiteTimer /> : <BlackTimer />}
       </Box>
       {isLoading ? (
@@ -46,7 +47,7 @@ const GameWidget: React.FC = observer(() => {
         <Skeleton variant='rectangular' width='560px' height='560px' />
       )}
       <Box display='flex' alignItems='center' justifyContent='space-between'>
-        {isWindow && authStore.jwt ? <UserTag avatarVariant='square' /> : ''}
+        {isWindow && authStore.jwt ? <MeTag avatarVariant='square' /> : ''}
         {gameStore.userSide === 'w' ? <WhiteTimer /> : <BlackTimer />}
       </Box>
     </Box>

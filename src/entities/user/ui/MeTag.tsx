@@ -2,21 +2,19 @@
 
 import { userResponseSchema } from '@/entities/user/model/schemas/userResponseSchema';
 import { AvatarPropsVariantOverrides, Skeleton } from '@mui/material';
-import { useUser } from '@/entities/user/lib/hooks/useUser';
 import { useMe } from '@/entities/user/lib/hooks/useMe';
 import { OverridableStringUnion } from '@mui/types';
 import { UserDisplay } from '@/shared/ui';
 import * as React from 'react';
 
-interface UserTagProps {
+interface MeTagProps {
   avatarVariant:
     | OverridableStringUnion<'circular' | 'rounded' | 'square', AvatarPropsVariantOverrides>
     | undefined;
-  userId: string;
 }
 
-const UserTag: React.FC<UserTagProps> = ({ avatarVariant, userId }) => {
-  const { data, isLoading, isSuccess } = useUser(userId);
+const MeTag: React.FC<MeTagProps> = ({ avatarVariant }) => {
+  const { data, isLoading, isSuccess } = useMe();
 
   if (isLoading) {
     return (
@@ -39,4 +37,4 @@ const UserTag: React.FC<UserTagProps> = ({ avatarVariant, userId }) => {
   }
 };
 
-export default UserTag;
+export default MeTag;
