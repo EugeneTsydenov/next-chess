@@ -1,15 +1,12 @@
 import TimeModeSelector from '@/widgets/game-tab-panel/ui/TimeModeSelector';
-import { loadingSelector, timeSelector } from '@/entities/game';
-import { Box, Paper, Typography } from '@mui/material';
-import { useAppSelector } from '@/shared/lib';
+import { Box, Button, Paper, Typography } from '@mui/material';
+import { gameStore, matchmakingStore } from '@/entities/game';
 import { PlayButton } from '@/features/game';
+import { observer } from 'mobx-react-lite';
 import { ClockLoader } from '@/shared/ui';
 import * as React from 'react';
 
-const GameTabPanel: React.FC = () => {
-  const isLoading = useAppSelector(loadingSelector);
-  const timeMode = useAppSelector(timeSelector);
-
+const GameTabPanel: React.FC = observer(() => {
   return (
     <Box
       width='100%'
@@ -18,11 +15,11 @@ const GameTabPanel: React.FC = () => {
       py={3}
       px={4}
       borderRadius='10px'
-      display={isLoading ? 'flex' : 'auto'}
+      display={matchmakingStore.isLoading ? 'flex' : 'auto'}
       alignItems='center'
       justifyContent='center'
     >
-      {!isLoading ? (
+      {!matchmakingStore.isLoading ? (
         <>
           <TimeModeSelector />
           <PlayButton gameMode='online' />{' '}
@@ -42,7 +39,7 @@ const GameTabPanel: React.FC = () => {
         >
           <ClockLoader />
           <Typography variant='h5' component='span'>
-            {timeMode.timeTitle}
+            {gameStore.time.timeTitle}
           </Typography>
           <Typography sx={{ opacity: '0.5', mb: 5 }}>The game will start soon...</Typography>
           <Typography component='span' sx={{ opacity: '0.5' }}>
@@ -52,6 +49,6 @@ const GameTabPanel: React.FC = () => {
       )}
     </Box>
   );
-};
+});
 
 export default GameTabPanel;

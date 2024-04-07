@@ -1,10 +1,10 @@
 'use client';
 
 import { GameTabPanel } from '@/widgets/game-tab-panel';
-import { useAppSelector } from '@/shared/lib';
 import { gameSocket } from '@/entities/game';
-import { jwtSelector } from '@/shared/model';
 import { GameWidget } from '@/widgets/game';
+import { observer } from 'mobx-react-lite';
+import { authStore } from '@/shared/model';
 import { Box } from '@mui/material';
 import * as React from 'react';
 
@@ -17,8 +17,8 @@ interface GamePageProps {
   };
 }
 
-const GamePage: React.FC<GamePageProps> = ({ url }) => {
-  const jwt = useAppSelector(jwtSelector);
+const GamePage: React.FC<GamePageProps> = observer(({ url }) => {
+  const jwt = authStore.jwt;
 
   React.useEffect(() => {
     if (jwt) {
@@ -43,6 +43,6 @@ const GamePage: React.FC<GamePageProps> = ({ url }) => {
       </Box>
     </Box>
   );
-};
+});
 
 export default GamePage;

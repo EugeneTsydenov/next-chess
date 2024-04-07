@@ -1,9 +1,8 @@
 'use client';
 
-import { gameSocket, timeSelector } from '@/entities/game';
+import { gameSocket, gameStore } from '@/entities/game';
 import { Button, Typography } from '@mui/material';
-import { useAppSelector } from '@/shared/lib';
-import { jwtSelector } from '@/shared/model';
+import { authStore } from '@/shared/model';
 import * as React from 'react';
 
 interface PlayButtonProps {
@@ -11,16 +10,13 @@ interface PlayButtonProps {
 }
 
 const PlayButton: React.FC<PlayButtonProps> = ({ gameMode }) => {
-  const timeMode = useAppSelector(timeSelector);
-  const jwt = useAppSelector(jwtSelector);
-
   return (
     <Button
       fullWidth
       variant='contained'
       sx={{ p: 1.5, borderRadius: '5px' }}
       onClick={() => {
-        gameSocket.findGame(jwt!, { timeMode: timeMode.timeTitle });
+        gameSocket.findGame(authStore.jwt!, { timeMode: gameStore.time.timeTitle });
       }}
     >
       <Typography variant='h4' fontWeight={600}>

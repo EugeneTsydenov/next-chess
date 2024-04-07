@@ -6,3 +6,5 @@ export const userResponseSchema = z.object({
   avatar: z.string(),
   createdAt: z.string(),
 });
+
+export type userResponseType = z.infer<typeof userResponseSchema>;

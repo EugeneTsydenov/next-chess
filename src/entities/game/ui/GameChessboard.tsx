@@ -1,26 +1,26 @@
-'use client';
-
-import {
-  fenSelector,
-  turnSelector,
-  userRoleSelector,
-  userSideSelector,
-} from '@/entities/game/model/redux/gameSelectors';
 import { Piece, Square } from 'react-chessboard/dist/chessboard/types';
-import { useAppSelector } from '@/shared/lib';
+import { gameSocket, gameStore } from '@/entities/game';
+import { observer } from 'mobx-react-lite';
 import { Chessboard } from '@/shared/ui';
 import * as React from 'react';
 
-const GameChessboard: React.FC = () => {
-  const fen = useAppSelector(fenSelector);
-  const userSide = useAppSelector(userSideSelector);
-  const userRole = useAppSelector(userRoleSelector);
-  const turn = useAppSelector(turnSelector);
+const GameChessboard: React.FC = observer(() => {
+  const fen = gameStore.fen;
 
   function isDraggablePiece({ piece }: { piece: Piece }) {
-    if (userRole === 'watcher') return false;
-    if (userSide !== turn) return false;
-    if (userSide !== piece[0]) return false;
+    if (gameStore.userRole === 'watcher') return false;
+    if (gameStore.userSide !== gameStore.turn) return false;
+    if (gameStore.userSide !== piece[0]) return false;
+    return true;
+  }
+
+  function onDrop(sourceSquare: Square, targetSquare: Square, piece: Piece) {
+    gameSocket.move({
+      from: sourceSquare,
+      to: targetSquare,
+      promotion: piece.toLowerCase() ?? 'q',
+    });
+
     return true;
   }
 
@@ -29,9 +29,10 @@ const GameChessboard: React.FC = () => {
       boardWidth={560}
       position={fen}
       isDraggablePiece={isDraggablePiece}
-      boardOrientation={userSide === 'w' ? 'white' : 'black'}
+      boardOrientation={gameStore.userSide === 'w' ? 'white' : 'black'}
+      onPieceDrop={onDrop}
     />
   );
-};
+});
 
 export default GameChessboard;

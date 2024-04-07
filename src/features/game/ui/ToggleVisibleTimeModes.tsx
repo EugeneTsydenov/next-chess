@@ -2,8 +2,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Box, Typography } from '@mui/material';
-import { timeSelector } from '@/entities/game';
-import { useAppSelector } from '@/shared/lib';
+import { gameStore } from '@/entities/game';
 import * as React from 'react';
 interface ToggleTimeModesBtnProps {
   toggleVisibleTimeModes: () => void;
@@ -14,8 +13,6 @@ const ToggleVisibleTimeModes: React.FC<ToggleTimeModesBtnProps> = ({
   toggleVisibleTimeModes,
   isVisibleTimeModes,
 }) => {
-  const time = useAppSelector(timeSelector);
-
   return (
     <Box
       onClick={toggleVisibleTimeModes}
@@ -30,7 +27,7 @@ const ToggleVisibleTimeModes: React.FC<ToggleTimeModesBtnProps> = ({
     >
       <AccessTimeIcon fontSize='large' color='primary' />
       <Typography variant='h4' component='span' fontWeight={600}>
-        {time.timeTitle}
+        {gameStore.time.timeTitle}
       </Typography>
       {!isVisibleTimeModes && (
         <KeyboardArrowDownIcon sx={{ position: 'absolute', right: '10px' }} fontSize='large' />

@@ -1,6 +1,5 @@
 import { MenuItem, Typography } from '@mui/material';
-import { useAppDispatch } from '@/shared/lib';
-import { setTime } from '@/entities/game';
+import { gameStore } from '@/entities/game';
 import * as React from 'react';
 
 export interface TimeModeProps {
@@ -12,11 +11,9 @@ export interface TimeModeProps {
 }
 
 const TimeModeItem: React.FC<TimeModeProps> = ({ time, toggleVisibleTimeModes }) => {
-  const dispatch = useAppDispatch();
-
   function selectTimeMode() {
     toggleVisibleTimeModes();
-    dispatch(setTime(time));
+    gameStore.setTime(time);
   }
 
   return (

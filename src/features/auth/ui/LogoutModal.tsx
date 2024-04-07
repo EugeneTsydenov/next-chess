@@ -1,12 +1,9 @@
 import { logoutAction } from '@/features/auth/lib/actions/logoutAction';
 import { Box, Button, Modal, Typography } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import sadSmile from '../../../../public/sad-smile.png';
-import { setJwt } from '@/shared/model/jwt/jwtSlice';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
-import { jwtSelector } from '@/shared/model';
-import { authApi } from '@/entities/auth';
+import { authStore } from '@/shared/model';
 import Image from 'next/image';
 import * as React from 'react';
 
@@ -16,15 +13,11 @@ interface LogoutModalProps {
 }
 
 const LogoutModal: React.FC<LogoutModalProps> = ({ showLogoutModal, setShowLogoutModal }) => {
-  const jwt = useAppSelector(jwtSelector);
-  const dispatch = useAppDispatch();
-
   async function logout() {
     setShowLogoutModal(false);
-    const res = await logoutAction(jwt!);
+    const res = await logoutAction(authStore.jwt!);
     if (res === 'OK') {
-      dispatch(setJwt(null));
-      dispatch(authApi.util?.resetApiState());
+      authStore.setJwt(null);
     }
   }
 

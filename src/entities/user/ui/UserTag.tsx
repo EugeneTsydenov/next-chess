@@ -2,20 +2,19 @@
 
 import { userResponseSchema } from '@/entities/user/model/schemas/userResponseSchema';
 import { AvatarPropsVariantOverrides, Skeleton } from '@mui/material';
-import { useUserQuery } from '@/entities/user/api/userApi';
+import { useUser } from '@/entities/user/lib/hooks/useUser';
 import { OverridableStringUnion } from '@mui/types';
 import { UserDisplay } from '@/shared/ui';
 import * as React from 'react';
 
 interface UserTagProps {
-  jwt: string;
   avatarVariant:
     | OverridableStringUnion<'circular' | 'rounded' | 'square', AvatarPropsVariantOverrides>
     | undefined;
 }
 
-const UserTag: React.FC<UserTagProps> = ({ jwt, avatarVariant }) => {
-  const { data, isLoading, isSuccess } = useUserQuery(jwt);
+const UserTag: React.FC<UserTagProps> = ({ avatarVariant }) => {
+  const { data, isLoading, isSuccess } = useUser();
 
   if (isLoading) {
     return (

@@ -1,22 +1,21 @@
 'use client';
 
-import { gameIdSelector, startGameSelector } from '@/entities/game';
 import { GameTabPanel } from '@/widgets/game-tab-panel';
-import { useAppSelector } from '@/shared/lib';
+import { matchmakingStore } from '@/entities/game';
 import { useRouter } from 'next/navigation';
 import { GameWidget } from '@/widgets/game';
+import { observer } from 'mobx-react-lite';
 import { Box } from '@mui/material';
 import * as React from 'react';
 
-const PlayOnlinePage: React.FC = () => {
-  const isStartGame = useAppSelector(startGameSelector);
-  const gameId = useAppSelector(gameIdSelector);
+const PlayOnlinePage: React.FC = observer(() => {
   const router = useRouter();
+  const isStartGame = matchmakingStore.isStartGame;
 
   React.useEffect(() => {
-    console.log(isStartGame, gameId);
-    if (isStartGame && gameId) {
-      router.push(`/game/${gameId}`);
+    const roomId = localStorage.getItem('roomId');
+    if (isStartGame && roomId) {
+      router.push(`/game/${roomId}`);
     }
   }, [isStartGame, router]);
 
@@ -37,6 +36,6 @@ const PlayOnlinePage: React.FC = () => {
       </Box>
     </Box>
   );
-};
+});
 
 export default PlayOnlinePage;

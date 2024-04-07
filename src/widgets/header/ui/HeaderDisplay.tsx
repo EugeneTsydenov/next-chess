@@ -2,15 +2,15 @@
 
 import UserSettings from '@/widgets/header/ui/UserSettings';
 import { Button, Skeleton, Tooltip } from '@mui/material';
-import { useAppSelector, useWindow } from '@/shared/lib';
-import { jwtSelector } from '@/shared/model';
+import { observer } from 'mobx-react-lite';
+import { authStore } from '@/shared/model';
 import { UserTag } from '@/entities/user';
+import { useWindow } from '@/shared/lib';
 import { Link } from '@/shared/ui';
 import * as React from 'react';
 
-const HeaderDisplay: React.FC = () => {
+const HeaderDisplay: React.FC = observer(() => {
   const isWindow = useWindow();
-  const jwt = useAppSelector(jwtSelector);
   const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null>(null);
   const handleOpenUserMenu: React.MouseEventHandler<HTMLButtonElement> = event => {
     setAnchorElUser(event.currentTarget);
@@ -24,7 +24,7 @@ const HeaderDisplay: React.FC = () => {
     return <Skeleton width={50} height={30} />;
   }
 
-  if (!jwt) {
+  if (!authStore.jwt) {
     return (
       <Link href='/login'>
         <Button variant='contained'>Login</Button>
@@ -36,12 +36,12 @@ const HeaderDisplay: React.FC = () => {
     <>
       <Tooltip title='Open settings'>
         <Button sx={{ textTransform: 'none' }} color='inherit' onClick={handleOpenUserMenu}>
-          <UserTag jwt={jwt} avatarVariant='circular' />
+          <UserTag avatarVariant='circular' />
         </Button>
       </Tooltip>
       <UserSettings anchorElUser={anchorElUser} handleCloseUserMenu={handleCloseUserMenu} />
     </>
   );
-};
+});
 
 export default HeaderDisplay;

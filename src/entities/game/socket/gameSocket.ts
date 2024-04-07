@@ -1,49 +1,51 @@
-import {
-  setEnemy,
-  setFen,
-  setGameId,
-  setPlayers,
-  setTurn,
-  setUserRole,
-  setUserSide,
-} from '@/entities/game/model/redux/gameSlice';
-import { setLoading, setStartGame } from '@/entities/game/model/redux/matchmakingSlice';
+import { IMoveData } from '@/entities/game/model/types/IMoveData';
 import { DefaultEventsMap } from '@socket.io/component-emitter';
+import { gameStore, matchmakingStore } from '@/entities/game';
 import { io, Socket } from 'socket.io-client';
 import { BASE_API_URL } from '@/shared/lib';
-import { store } from '@/app/_model';
-
 class GameSocket {
   socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(`${BASE_API_URL}/game`);
 
   public findGame(jwt: string, gameSettings: any) {
     this.socket.emit('find_game', { jwt, gameSettings });
-    store.dispatch(setLoading(true));
+    matchmakingStore.setLoading(true);
   }
 
-  public getGameState(jwt: string, gameId: string) {
-    this.socket.emit('get_game', { jwt, gameId });
+  public getGameState(jwt: string, roomId: string) {
+    this.socket.emit('get_game', { jwt, roomId });
+  }
+
+  public move(moveData: IMoveData) {
+    const roomId = localStorage.getItem('roomId');
+    if (roomId) {
+      this.socket.emit('move', { moveData, roomId });
+    }
   }
 }
 
 export const gameSocket = new GameSocket();
 
 gameSocket.socket.on('found_game', data => {
-  store.dispatch(setLoading(false));
-  store.dispatch(setStartGame(true));
-  store.dispatch(setGameId(data.roomId));
+  matchmakingStore.setLoading(false);
+  matchmakingStore.setStartGame(true);
+  localStorage.setItem('roomId', data.roomId);
 });
 
 gameSocket.socket.on('state_game', data => {
-  console.log(data.userColor);
-  if (data.userRole === 'players') {
-    store.dispatch(setEnemy(data.enemy));
+  if (data.userRole === 'player') {
+    gameStore.setEnemy(data.enemy);
+    localStorage.setItem('roomId', data.roomId);
+    gameStore.setUserSide(data.userColor);
   }
   if (data.userRole === 'watcher') {
-    store.dispatch(setPlayers(data.players));
+    gameStore.setPlayers(data.players);
   }
-  store.dispatch(setTurn(data.turn));
-  store.dispatch(setFen(data.fen));
-  store.dispatch(setUserRole(data.userRole));
-  store.dispatch(setUserSide(data.userColor));
+  gameStore.setTurn(data.turn);
+  gameStore.setFen(data.fen);
+  gameStore.setUserRole(data.userRole);
+});
+
+gameSocket.socket.on('moved', data => {
+  gameStore.setTurn(data.turn);
+  gameStore.setFen(data.fen);
 });
