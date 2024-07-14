@@ -9,11 +9,11 @@ import PasswordVisibility from '@/features/auth/ui/PasswordVisibility';
 import { loginAction } from '@/features/auth/lib/actions/loginAction';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button, TextField } from '@mui/material';
-import { myToast, useAppDispatch } from '@/shared/lib';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { setJwt } from '@/shared/model/jwt/jwtSlice';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
+import { authStore } from '@/shared/model';
+import { myToast } from '@/shared/lib';
 import { Link } from '@/shared/ui';
 import * as React from 'react';
 
@@ -30,7 +30,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ callbackUrl }) => {
     resolver: zodResolver(LoginFormSchema),
   });
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<LoginInputType> = async data => {
     try {
@@ -38,7 +37,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ callbackUrl }) => {
       if (resData.jwt) {
         const validatedData = loginSuccessResponseSchema.parse(resData);
         myToast(validatedData.data.message);
-        dispatch(setJwt(validatedData.jwt));
+        authStore.setJwt(validatedData.jwt);
         router.push(callbackUrl ? callbackUrl : '/');
       } else {
         const validatedData = loginErrorResponseSchema.parse(resData);

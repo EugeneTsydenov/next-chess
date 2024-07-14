@@ -1,2 +1,2 @@
-export { userResponseSchema } from './model/schemas/userResponseSchema';
-export { useUserQuery } from './api/userApi';
+export { default as MeTag } from './ui/MeTag';
+export { default as UserTag } from './ui/UserTag';

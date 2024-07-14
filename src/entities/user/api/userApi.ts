@@ -1,19 +1,11 @@
-import { privateApi } from '@/shared/api';
+import { $axios, $privateAxios } from '@/shared/config';
 
-export const userApi = privateApi.injectEndpoints({
-  endpoints: build => ({
-    user: build.query({
-      query: (jwt: string) => {
-        return {
-          url: '/user',
-          method: 'get',
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        };
-      },
-    }),
-  }),
-});
+export class UserApi {
+  public static getUser() {
+    return $privateAxios.get('/user');
+  }
 
-export const { useUserQuery } = userApi;
+  public static getUserById(id: string) {
+    return $axios.get(`/user/${id}`);
+  }
+}

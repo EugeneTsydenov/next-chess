@@ -1,1 +1,0 @@
-export { privateApi } from './privateApi';

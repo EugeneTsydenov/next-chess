@@ -1,11 +1,11 @@
 'use client';
 
 import { refreshResponseSchema } from '@/entities/auth/model/schemas/refreshResponseSchema';
-import { useRefreshQuery } from '@/entities/auth/api/authApi';
+import { useRefresh } from '@/entities/auth/lib/hooks/useRefresh';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAppDispatch, useWindow } from '@/shared/lib';
 import { FullPageLoader } from '@/shared/ui';
-import { setJwt } from '@/shared/model';
+import { authStore } from '@/shared/model';
+import { useWindow } from '@/shared/lib';
 import * as React from 'react';
 
 interface ProtectedRouteProps {
@@ -19,18 +19,17 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const router = useRouter();
   const pathname = usePathname();
   const isWindow = useWindow();
-  const { data, isSuccess, isLoading } = useRefreshQuery(null);
-  const dispatch = useAppDispatch();
+  const { data, isSuccess, isLoading } = useRefresh();
 
-  const isAuthRoute = authPrivateRoutes.includes(pathname);
+  const isAuthRoute = authPrivateRoutes.includes(pathname) || pathname.includes('/game');
   const isNotAuthRoute = notAuthPrivateRoutes.includes(pathname);
 
   React.useEffect(() => {
     if (isSuccess) {
       const validatedData = refreshResponseSchema.parse(data);
-      dispatch(setJwt(validatedData.jwt));
+      authStore.setJwt(validatedData.jwt);
     }
-  }, [data, dispatch, isSuccess]);
+  }, [data, isSuccess]);
 
   if (isAuthRoute && isWindow && !isLoading && !data?.jwt) {
     router.push('/');

@@ -23,6 +23,7 @@ export const darkTheme = createTheme({
     },
     background: {
       default: darkColorTokens.grey[700],
+      paper: darkColorTokens.grey[900],
     },
   },
   typography: {
